@@ -1,6 +1,10 @@
 import { BaseEntity } from 'src/shared/entities/base.entity';
 import { Column, Entity } from 'typeorm';
 
+export enum ConversationType {
+  DUO = 'DUO',
+  GROUP = 'GROUP',
+}
 @Entity('conversations')
 export class Conversation extends BaseEntity {
   @Column({
@@ -13,4 +17,10 @@ export class Conversation extends BaseEntity {
     nullable: false,
   })
   name: string;
+
+  @Column({
+    nullable: false,
+    default: ConversationType.DUO,
+  })
+  type: string;
 }
