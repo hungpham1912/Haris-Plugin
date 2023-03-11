@@ -2,6 +2,7 @@ import { Column, Entity } from 'typeorm';
 import { Exclude } from 'class-transformer';
 import { ApiProperty } from '@nestjs/swagger';
 import { BaseEntity } from 'src/shared/entities/base.entity';
+import { ENV_CONFIG } from 'src/shared/constants/env.constant';
 
 export enum UserRole {
   USER = 'user',
@@ -24,6 +25,15 @@ export class User extends BaseEntity {
   })
   @Column()
   fullName: string;
+
+  @ApiProperty({
+    example: ENV_CONFIG.source.user.defaultAvatar,
+  })
+  @Column({
+    default: ENV_CONFIG.source.user.defaultAvatar,
+    nullable: false,
+  })
+  avatarUrl: string;
 
   @ApiProperty({
     example: 'user',

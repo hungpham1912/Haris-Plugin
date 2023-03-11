@@ -6,6 +6,7 @@ import { DatabaseConfig } from './database/database.config';
 import { ClientModule } from './module/client/client.module';
 import { OperatorModule } from './module/operator/operator.module';
 
+
 @Module({
   imports: [
     TypeOrmModule.forRoot(new DatabaseConfig().getConfig()),

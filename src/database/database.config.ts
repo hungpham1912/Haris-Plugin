@@ -8,6 +8,11 @@ export class DatabaseConfig {
     type: 'postgres',
     entities: [Manager, User],
     synchronize: true,
+    extra: {
+      ssl: {
+        rejectUnauthorized: false,
+      },
+    },
     ...ENV_CONFIG.database,
   };
 

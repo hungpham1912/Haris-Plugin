@@ -14,4 +14,9 @@ export const ENV_CONFIG = {
     port: getConfig('system.port') || 3000,
     apiVersion: getConfig('system.api_version'),
   },
+  source: {
+    user: {
+      defaultAvatar: getConfig('source.user.defaultAvatar'),
+    },
+  },
 };
