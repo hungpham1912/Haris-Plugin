@@ -1,16 +1,21 @@
 import {
   ValidatorConstraint,
   ValidatorConstraintInterface,
-  ValidationArguments,
 } from 'class-validator';
+import { Source } from 'src/database/database.config';
+import { Conversation } from '../entities/conversation.entity';
 
 @ValidatorConstraint({ async: true })
-export class DriverExistConstraint implements ValidatorConstraintInterface {
-  async validate(value: any, args: ValidationArguments) {
-    // const check = await new BuilderRepository(DriverSchema).findOneByQuery({
-    //   [args.property]: value,
-    // });
-    // if (check) return false;
+export class ConversationExistConstraint
+  implements ValidatorConstraintInterface
+{
+  async validate(value: string) {
+    const check = await Source.connect()
+      .getRepository(Conversation)
+      .findOne({
+        where: { id: value },
+      });
+    if (!check) return false;
     return true;
   }
 }
