@@ -59,6 +59,7 @@ export class CliConversationService {
         });
 
         this.userConversationService.multipleCreates(userConversationParam);
+
         return conversation;
       } else {
         param.type = ConversationType.DUO;
@@ -81,6 +82,10 @@ export class CliConversationService {
           nickName: user.fullName,
           showName: users[0].fullName,
         });
+
+        this.userConversationService.multipleCreates(userConversationParam);
+
+        return conversation;
       }
     } catch (error) {
       console.log('🚀 ~ file: chat.service.ts:14 ~ :', error);

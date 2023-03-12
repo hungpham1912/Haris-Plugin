@@ -5,6 +5,7 @@ import { customProvider } from './app.provider';
 import { DatabaseConfig } from './database/database.config';
 import { ClientModule } from './module/client/client.module';
 import { OperatorModule } from './module/operator/operator.module';
+import { TalkedsModule } from './module/core/talkeds/talkeds.module';
 
 @Module({
   imports: [
@@ -23,6 +24,7 @@ import { OperatorModule } from './module/operator/operator.module';
         module: ClientModule,
       },
     ]),
+    TalkedsModule,
   ],
   providers: [...customProvider],
 })
