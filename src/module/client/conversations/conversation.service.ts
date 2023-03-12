@@ -32,7 +32,6 @@ export class CliConversationService {
     try {
       const param: CreateConversationParam = {
         type: '',
-        backgroundUrl: '',
       };
 
       const users = await this.usersService.findAll({ id: In(body.userIds) });
@@ -40,7 +39,6 @@ export class CliConversationService {
 
       if (body.userIds.length > 1) {
         param.type = ConversationType.GROUP;
-        param.backgroundUrl = ENV_CONFIG.source.conversation.defaultAvatar;
         const name = this.buildNameGroupChat(users, user);
 
         conversation = await this.conversationsService.create(param);
@@ -52,6 +50,7 @@ export class CliConversationService {
               conversationId: conversation.id,
               nickName: user.fullName,
               showName: name,
+              backgroundUrl: ENV_CONFIG.source.user.defaultAvatar,
             };
           },
         );
@@ -62,6 +61,7 @@ export class CliConversationService {
           nickName: user.fullName,
           role: UserConversationRole.ADMIN,
           showName: name,
+          backgroundUrl: ENV_CONFIG.source.user.defaultAvatar,
         });
 
         this.userConversationService.multipleCreates(userConversationParam);
@@ -76,6 +76,7 @@ export class CliConversationService {
               conversationId: conversation.id,
               nickName: value.fullName,
               showName: user.fullName,
+              backgroundUrl: user.avatarUrl,
             };
           },
         );
@@ -85,6 +86,7 @@ export class CliConversationService {
           conversationId: conversation.id,
           nickName: user.fullName,
           showName: users[0].fullName,
+          backgroundUrl: users[0].avatarUrl,
         });
 
         this.userConversationService.multipleCreates(userConversationParam);
@@ -127,6 +129,7 @@ export class CliConversationService {
         page,
         query,
         filter,
+        user,
       );
     } catch (error) {
       console.log('🚀 ~ file: users.service.ts:15 ~ ', error);

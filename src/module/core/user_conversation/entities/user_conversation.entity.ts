@@ -1,3 +1,4 @@
+import { ENV_CONFIG } from 'src/shared/constants/env.constant';
 import { BaseEntity } from 'src/shared/entities/base.entity';
 import { Column, Entity, ManyToOne } from 'typeorm';
 import { Conversation } from '../../conversations/entities/conversation.entity';
@@ -26,6 +27,13 @@ export class UserConversation extends BaseEntity {
     default: 'null',
   })
   showName: string;
+
+  @Column({
+    nullable: false,
+    default: ENV_CONFIG.source.user.defaultAvatar,
+    length: 5000,
+  })
+  backgroundUrl: string;
 
   @Column({ nullable: false })
   userId: string;

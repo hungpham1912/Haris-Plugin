@@ -6,7 +6,7 @@ import {
   ApiResponse,
   ApiTags,
 } from '@nestjs/swagger';
-import { PaginateQuery } from 'nestjs-paginate';
+import { Paginate, PaginateQuery } from 'nestjs-paginate';
 import { CreateConversationDto } from 'src/module/core/conversations/dto/create-conversation.dto';
 import { ConversationFilter } from 'src/module/core/conversations/models/conversation.model';
 import { User } from 'src/module/core/users/entities/user.entity';
@@ -60,7 +60,7 @@ export class CliConversationController {
   @ApiResponse({ status: 403, description: 'Forbidden.' })
   async getConversation(
     @AuthResponse() user: User,
-    query: PaginateQuery,
+    @Paginate() query: PaginateQuery,
     @ConversationFilterDecor() filter: ConversationFilter,
   ) {
     try {

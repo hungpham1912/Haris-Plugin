@@ -3,6 +3,7 @@ export const USER_CONVERSATION_CONSTANT = {
     alias: 'user_conversation',
     column: {
       showName: 'showName',
+      userId: 'userId',
       createdAt: 'createdAt',
     },
   },

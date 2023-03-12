@@ -4,6 +4,7 @@ import { PaginateQuery } from 'nestjs-paginate';
 import { Operator, PaginateBuilder } from 'src/shared/lib/paginate/condition';
 import { Repository } from 'typeorm';
 import { ConversationFilter } from '../conversations/models/conversation.model';
+import { User } from '../users/entities/user.entity';
 import { USER_CONVERSATION_CONSTANT } from './constants/user_conversation.constant';
 import { CreateUserConversationParam } from './dto/create-user_conversation.dto';
 import { UserConversation } from './entities/user_conversation.entity';
@@ -29,6 +30,7 @@ export class UserConversationService {
     page: number,
     query: PaginateQuery,
     filter: ConversationFilter,
+    user: User,
   ) {
     try {
       const { alias, column } = USER_CONVERSATION_CONSTANT.paginate;
@@ -39,9 +41,10 @@ export class UserConversationService {
         .andWhere(
           column.showName,
           filter?.showName,
-          !filter?.showName,
+          filter?.showName != undefined,
           Operator.LIKE_RIGHT,
         )
+        .andWhere(column.userId, user.id, true, Operator.EQ)
         .getPaginate({ limit, page, query });
     } catch (error) {
       throw error;

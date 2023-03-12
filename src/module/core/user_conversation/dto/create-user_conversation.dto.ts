@@ -6,4 +6,5 @@ export class CreateUserConversationParam {
   conversationId: string;
   role?: string;
   showName: string;
+  backgroundUrl: string;
 }
