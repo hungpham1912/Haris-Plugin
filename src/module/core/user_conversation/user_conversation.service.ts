@@ -35,7 +35,9 @@ export class UserConversationService {
     try {
       const { alias, column } = USER_CONVERSATION_CONSTANT.paginate;
       return await new PaginateBuilder<UserConversation>(
-        this.userConversationRepository,
+        this.userConversationRepository
+          .createQueryBuilder(alias)
+          .leftJoinAndSelect(`${alias}.conversation`, 'conversation'),
         alias,
       )
         .andWhere(
@@ -46,6 +48,14 @@ export class UserConversationService {
         )
         .andWhere(column.userId, user.id, true, Operator.EQ)
         .getPaginate({ limit, page, query });
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  async findOne(query: any) {
+    try {
+      return await this.userConversationRepository.findOne({ where: query });
     } catch (error) {
       throw error;
     }

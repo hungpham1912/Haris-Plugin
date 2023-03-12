@@ -1,13 +1,13 @@
 import { Logger } from '@nestjs/common';
 import { paginate, PaginateQuery } from 'nestjs-paginate';
-import { Repository, SelectQueryBuilder } from 'typeorm';
+import { SelectQueryBuilder } from 'typeorm';
 
 export class PaginateBuilder<T> {
   repository: SelectQueryBuilder<T>;
   alias: string;
 
-  public constructor(repo: Repository<T>, alias: string) {
-    this.repository = repo.createQueryBuilder(alias);
+  public constructor(repo: SelectQueryBuilder<T>, alias: string) {
+    this.repository = repo;
     this.alias = alias;
   }
 
@@ -95,6 +95,10 @@ export function buildQueryStr(
     case Operator.LT:
       queryStr = `${alias}.${colum} < :lt`;
       query = { lt: value };
+      break;
+    case Operator.EQ:
+      queryStr = `${alias}.${colum} = :eq`;
+      query = { eq: value };
       break;
     default:
       break;

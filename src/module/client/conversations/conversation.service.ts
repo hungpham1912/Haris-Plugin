@@ -50,7 +50,7 @@ export class CliConversationService {
               conversationId: conversation.id,
               nickName: user.fullName,
               showName: name,
-              backgroundUrl: ENV_CONFIG.source.user.defaultAvatar,
+              backgroundUrl: ENV_CONFIG.source.conversation.defaultAvatar,
             };
           },
         );
@@ -61,7 +61,7 @@ export class CliConversationService {
           nickName: user.fullName,
           role: UserConversationRole.ADMIN,
           showName: name,
-          backgroundUrl: ENV_CONFIG.source.user.defaultAvatar,
+          backgroundUrl: ENV_CONFIG.source.conversation.defaultAvatar,
         });
 
         this.userConversationService.multipleCreates(userConversationParam);

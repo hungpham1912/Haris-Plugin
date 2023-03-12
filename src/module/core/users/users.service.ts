@@ -23,7 +23,10 @@ export class UsersService {
   ) {
     try {
       const { alias, column } = USER_CONSTANT.paginate;
-      return await new PaginateBuilder<User>(this.userRepository, alias)
+      return await new PaginateBuilder<User>(
+        this.userRepository.createQueryBuilder(alias),
+        alias,
+      )
         .andWhere(
           column.fullName,
           filter?.fullName,
