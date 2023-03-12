@@ -5,8 +5,12 @@ import {
   CreateConversationDto,
   CreateConversationParam,
 } from 'src/module/core/conversations/dto/create-conversation.dto';
-import { ConversationType } from 'src/module/core/conversations/entities/conversation.entity';
+import {
+  Conversation,
+  ConversationType,
+} from 'src/module/core/conversations/entities/conversation.entity';
 import { ConversationFilter } from 'src/module/core/conversations/models/conversation.model';
+import { TalkedService } from 'src/module/core/talkeds/talkeds.service';
 import { User } from 'src/module/core/users/entities/user.entity';
 import { UsersService } from 'src/module/core/users/users.service';
 import { CreateUserConversationParam } from 'src/module/core/user_conversation/dto/create-user_conversation.dto';
@@ -21,6 +25,7 @@ export class CliConversationService {
     private readonly conversationsService: ConversationsService,
     private readonly usersService: UsersService,
     private readonly userConversationService: UserConversationService,
+    private readonly talkedService: TalkedService,
   ) {}
 
   async create(user: User, body: CreateConversationDto) {
@@ -31,13 +36,14 @@ export class CliConversationService {
       };
 
       const users = await this.usersService.findAll({ id: In(body.userIds) });
+      let conversation: Conversation;
 
       if (body.userIds.length > 1) {
         param.type = ConversationType.GROUP;
         param.backgroundUrl = ENV_CONFIG.source.conversation.defaultAvatar;
         const name = this.buildNameGroupChat(users, user);
 
-        const conversation = await this.conversationsService.create(param);
+        conversation = await this.conversationsService.create(param);
 
         const userConversationParam: CreateUserConversationParam[] = users.map(
           (value: User) => {
@@ -59,11 +65,9 @@ export class CliConversationService {
         });
 
         this.userConversationService.multipleCreates(userConversationParam);
-
-        return conversation;
       } else {
         param.type = ConversationType.DUO;
-        const conversation = await this.conversationsService.create(param);
+        conversation = await this.conversationsService.create(param);
 
         const userConversationParam: CreateUserConversationParam[] = users.map(
           (value: User) => {
@@ -85,8 +89,17 @@ export class CliConversationService {
 
         this.userConversationService.multipleCreates(userConversationParam);
 
-        return conversation;
+        const talked = await this.talkedService.findOne({
+          userId: user.id,
+          talkerId: users[0].id,
+        });
+
+        if (talked) return talked.conversation;
       }
+
+      users.push(user);
+      this.talkedService.multipleCreates(users, conversation);
+      return conversation;
     } catch (error) {
       console.log('🚀 ~ file: chat.service.ts:14 ~ :', error);
       throw error;

@@ -1,8 +1,9 @@
 import { BaseEntity } from 'src/shared/entities/base.entity';
-import { Column, ManyToOne } from 'typeorm';
+import { Column, Entity, ManyToOne } from 'typeorm';
 import { Conversation } from '../../conversations/entities/conversation.entity';
 import { User } from '../../users/entities/user.entity';
 
+@Entity('talkeds')
 export class Talked extends BaseEntity {
   @Column({ nullable: false })
   talkerId: string;
