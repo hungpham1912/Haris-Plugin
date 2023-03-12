@@ -1,6 +1,6 @@
 ## Database
 <p align="center">
-  <a target="blank"><img src="https://hn.ss.bfcplatform.vn/piyeon_dev/new_images/1678596820.515_Screenshot 2023-03-12 at 11.44.57.png" width="320" alt="Database" /></a>
+  <a target="blank"><img src="https://hn.ss.bfcplatform.vn/piyeon_dev/new_images/1678597535.172_Screenshot 2023-03-12 at 11.44.57_preview_rev_1.png" width="320" alt="Database" /></a>
 </p>
 
 ## File config/default.yaml
