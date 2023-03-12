@@ -77,7 +77,6 @@ export class CliAuthService implements AuthInterface {
       };
       const accessToken = await this.authService.generateJwtToken(payload);
       const data: ResponseAuthUser = { ...user, accessToken };
-
       return data;
     } catch (error) {
       console.log('🚀 ~ file: auth.service.ts:93 ~ CliAuthService ', error);

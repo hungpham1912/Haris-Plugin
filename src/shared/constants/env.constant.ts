@@ -18,5 +18,8 @@ export const ENV_CONFIG = {
     user: {
       defaultAvatar: getConfig('source.user.defaultAvatar'),
     },
+    conversation: {
+      defaultAvatar: getConfig('source.conversation.defaultAvatar'),
+    },
   },
 };

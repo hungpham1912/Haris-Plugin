@@ -21,6 +21,12 @@ export class UserConversation extends BaseEntity {
   })
   role: string;
 
+  @Column({
+    nullable: false,
+    default: 'null',
+  })
+  showName: string;
+
   @Column({ nullable: false })
   userId: string;
 

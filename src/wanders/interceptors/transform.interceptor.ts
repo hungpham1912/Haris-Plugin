@@ -29,7 +29,7 @@ export class TransformInterceptor<T>
       map((data) => {
         return this.matching(method, data, context);
       }),
-      timeout(5000),
+      timeout(30000),
       catchError((err) => {
         if (err instanceof TimeoutError) {
           return throwError(() => new RequestTimeoutException());

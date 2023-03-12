@@ -16,5 +16,5 @@ export class CreateConversationDto {
 
 export class CreateConversationParam {
   type: string;
-  name: string;
+  backgroundUrl: string;
 }

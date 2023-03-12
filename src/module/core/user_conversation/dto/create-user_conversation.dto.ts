@@ -5,4 +5,5 @@ export class CreateUserConversationParam {
   userId: string;
   conversationId: string;
   role?: string;
+  showName: string;
 }
