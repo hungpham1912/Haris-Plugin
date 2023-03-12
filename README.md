@@ -1,6 +1,6 @@
 ## Database
 <p align="center">
-  <a target="blank"><img src="https://nestjs.com/img/logo_text.svg" width="320" alt="Database" /></a>
+  <a target="blank"><img src="https://hn.ss.bfcplatform.vn/piyeon_dev/new_images/1678596820.515_Screenshot 2023-03-12 at 11.44.57.png" width="320" alt="Database" /></a>
 </p>
 
 ## File config/default.yaml
