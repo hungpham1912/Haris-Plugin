@@ -1,5 +1,5 @@
 import { createParamDecorator, ExecutionContext } from '@nestjs/common';
-import { UserFilter } from 'src/module/core/users/models/user.model';
+import { UserFilter } from 'src/core/users/models/user.model';
 
 export const UserFilterDecor = createParamDecorator(
   (data: unknown, ctx: ExecutionContext) => {

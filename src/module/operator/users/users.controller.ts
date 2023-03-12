@@ -13,14 +13,14 @@ import {
   ApiResponse,
   ApiTags,
 } from '@nestjs/swagger';
-import { MangerRole } from 'src/module/core/managers/entities/manager.entity';
+import { MangerRole } from 'src/core/managers/entities/manager.entity';
 import { ManagerRoles } from 'src/wanders/decorators/role.decorator';
 import { UUIDPipe } from 'src/wanders/pipes/uuid.pipe';
 import { JwtAuthManagerGuard } from '../auth/guards/jwt-auth.guard';
 import { MangerRolesGuard } from '../auth/guards/role.guard';
 import { OpUsersService } from './users.service';
 import { Paginate, PaginateQuery } from 'nestjs-paginate';
-import { UserFilter } from 'src/module/core/users/models/user.model';
+import { UserFilter } from 'src/core/users/models/user.model';
 import { UserFilterDecor } from 'src/wanders/decorators/users.decorator';
 import { BASE_ERROR } from 'src/shared/error/base.error';
 

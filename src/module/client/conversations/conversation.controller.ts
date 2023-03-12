@@ -7,9 +7,9 @@ import {
   ApiTags,
 } from '@nestjs/swagger';
 import { Paginate, PaginateQuery } from 'nestjs-paginate';
-import { CreateConversationDto } from 'src/module/core/conversations/dto/create-conversation.dto';
-import { ConversationFilter } from 'src/module/core/conversations/models/conversation.model';
-import { User } from 'src/module/core/users/entities/user.entity';
+import { CreateConversationDto } from 'src/core/conversations/dto/create-conversation.dto';
+import { ConversationFilter } from 'src/core/conversations/models/conversation.model';
+import { User } from 'src/core/users/entities/user.entity';
 import { BASE_ERROR } from 'src/shared/error/base.error';
 import { AuthResponse } from 'src/wanders/decorators/auth.decorator';
 import { ConversationFilterDecor } from 'src/wanders/decorators/conversation.decorator';

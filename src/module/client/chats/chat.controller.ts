@@ -2,13 +2,14 @@ import { Body, Controller, Get, Param, Post, UseGuards } from '@nestjs/common';
 import {
   ApiBearerAuth,
   ApiOperation,
+  ApiQuery,
   ApiResponse,
   ApiTags,
 } from '@nestjs/swagger';
 import { Paginate, PaginateQuery } from 'nestjs-paginate';
-import { CreateChatDto } from 'src/module/core/chats/dto/create-chat.dto';
-import { ChatFilter } from 'src/module/core/chats/models/chat.model';
-import { User } from 'src/module/core/users/entities/user.entity';
+import { CreateChatDto } from 'src/core/chats/dto/create-chat.dto';
+import { ChatFilter } from 'src/core/chats/models/chat.model';
+import { User } from 'src/core/users/entities/user.entity';
 import { BASE_ERROR } from 'src/shared/error/base.error';
 import { AuthResponse } from 'src/wanders/decorators/auth.decorator';
 import { ChatFilterDecor } from 'src/wanders/decorators/chat.decorator';
@@ -34,6 +35,18 @@ export class CliChatsController {
     }
   }
 
+  @ApiQuery({
+    example: 1,
+    name: 'page',
+  })
+  @ApiQuery({
+    example: 10,
+    name: 'limit',
+  })
+  @ApiQuery({
+    example: 10,
+    name: 'content',
+  })
   @Get('conversations/:conversationId/chats')
   @UseGuards(JwtUserAuthGuard)
   @ApiBearerAuth()

@@ -2,10 +2,7 @@ import { ExtractJwt, Strategy } from 'passport-jwt';
 import { PassportStrategy } from '@nestjs/passport';
 import { Injectable } from '@nestjs/common';
 import { OpeAuthService } from '../auth.service';
-import {
-  AuthManagerStrategy,
-  Payload,
-} from 'src/module/core/auth/models/auth.model';
+import { AuthManagerStrategy, Payload } from 'src/core/auth/models/auth.model';
 import { ENV_CONFIG } from 'src/shared/constants/env.constant';
 
 @Injectable()

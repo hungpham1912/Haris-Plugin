@@ -1,21 +1,21 @@
 import { Injectable } from '@nestjs/common';
 import { PaginateQuery } from 'nestjs-paginate';
-import { ConversationsService } from 'src/module/core/conversations/conversations.service';
+import { ConversationsService } from 'src/core/conversations/conversations.service';
 import {
   CreateConversationDto,
   CreateConversationParam,
-} from 'src/module/core/conversations/dto/create-conversation.dto';
+} from 'src/core/conversations/dto/create-conversation.dto';
 import {
   Conversation,
   ConversationType,
-} from 'src/module/core/conversations/entities/conversation.entity';
-import { ConversationFilter } from 'src/module/core/conversations/models/conversation.model';
-import { TalkedService } from 'src/module/core/talkeds/talkeds.service';
-import { User } from 'src/module/core/users/entities/user.entity';
-import { UsersService } from 'src/module/core/users/users.service';
-import { CreateUserConversationParam } from 'src/module/core/user_conversation/dto/create-user_conversation.dto';
-import { UserConversationRole } from 'src/module/core/user_conversation/entities/user_conversation.entity';
-import { UserConversationService } from 'src/module/core/user_conversation/user_conversation.service';
+} from 'src/core/conversations/entities/conversation.entity';
+import { ConversationFilter } from 'src/core/conversations/models/conversation.model';
+import { TalkedService } from 'src/core/talkeds/talkeds.service';
+import { User } from 'src/core/users/entities/user.entity';
+import { UsersService } from 'src/core/users/users.service';
+import { CreateUserConversationParam } from 'src/core/user_conversation/dto/create-user_conversation.dto';
+import { UserConversationRole } from 'src/core/user_conversation/entities/user_conversation.entity';
+import { UserConversationService } from 'src/core/user_conversation/user_conversation.service';
 import { ENV_CONFIG } from 'src/shared/constants/env.constant';
 import { In } from 'typeorm';
 

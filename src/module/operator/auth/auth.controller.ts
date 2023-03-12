@@ -1,12 +1,12 @@
 import { Body, Controller, Post, UseGuards } from '@nestjs/common';
 import { ApiBody, ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
-import { ResponseAuthManager } from 'src/module/core/auth/models/auth.model';
+import { ResponseAuthManager } from 'src/core/auth/models/auth.model';
 import { OpeAuthService } from './auth.service';
-import { LoginDto, RegisterManagerDto } from '../../core/auth/dto/auth.dto';
+import { LoginDto, RegisterManagerDto } from '../../../core/auth/dto/auth.dto';
 import { LocalManagerAuthGuard } from './guards/local.guard';
 import { BasicResponse } from 'src/shared/basic.response';
 import { AuthResponse } from 'src/wanders/decorators/auth.decorator';
-import { Manager } from 'src/module/core/managers/entities/manager.entity';
+import { Manager } from 'src/core/managers/entities/manager.entity';
 import { BASE_ERROR } from 'src/shared/error/base.error';
 
 @ApiTags('Authentication')

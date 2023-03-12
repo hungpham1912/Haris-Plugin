@@ -1,6 +1,6 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { Manager } from '../../managers/entities/manager.entity';
-import { User } from 'src/module/core/users/entities/user.entity';
+import { User } from 'src/core/users/entities/user.entity';
 
 export enum AuthManagerStrategy {
   BASIC = 'basic_manager',

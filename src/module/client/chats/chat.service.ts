@@ -1,14 +1,14 @@
 import { HttpStatus, Injectable } from '@nestjs/common';
 import { PaginateQuery } from 'nestjs-paginate';
-import { ChatsService } from 'src/module/core/chats/chats.service';
+import { ChatsService } from 'src/core/chats/chats.service';
 import {
   CreateChatDto,
   CreateChatParam,
-} from 'src/module/core/chats/dto/create-chat.dto';
-import { CHAT_BAD_RQ_ERROR } from 'src/module/core/chats/errors/chat.error';
-import { ChatFilter } from 'src/module/core/chats/models/chat.model';
-import { User } from 'src/module/core/users/entities/user.entity';
-import { UserConversationService } from 'src/module/core/user_conversation/user_conversation.service';
+} from 'src/core/chats/dto/create-chat.dto';
+import { CHAT_BAD_RQ_ERROR } from 'src/core/chats/errors/chat.error';
+import { ChatFilter } from 'src/core/chats/models/chat.model';
+import { User } from 'src/core/users/entities/user.entity';
+import { UserConversationService } from 'src/core/user_conversation/user_conversation.service';
 
 @Injectable()
 export class CliChatsService {

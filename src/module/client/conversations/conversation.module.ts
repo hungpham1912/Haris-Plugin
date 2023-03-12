@@ -1,5 +1,5 @@
 import { Module } from '@nestjs/common';
-import { ConversationsModule } from 'src/module/core/conversations/conversations.module';
+import { ConversationsModule } from 'src/core/conversations/conversations.module';
 
 @Module({
   imports: [ConversationsModule],

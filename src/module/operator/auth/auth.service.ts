@@ -1,13 +1,10 @@
 import { HttpStatus, Injectable } from '@nestjs/common';
-import { AuthInterface } from 'src/module/core/auth/interfaces/auth.interface';
-import { AuthService } from 'src/module/core/auth/auth.service';
-import {
-  Payload,
-  ResponseAuthManager,
-} from 'src/module/core/auth/models/auth.model';
-import { ManagersService } from 'src/module/core/managers/managers.service';
-import { RegisterManagerDto } from '../../core/auth/dto/auth.dto';
-import { AUTH_ERROR } from 'src/module/core/auth/error/message.error';
+import { AuthInterface } from 'src/core/auth/interfaces/auth.interface';
+import { AuthService } from 'src/core/auth/auth.service';
+import { Payload, ResponseAuthManager } from 'src/core/auth/models/auth.model';
+import { ManagersService } from 'src/core/managers/managers.service';
+import { RegisterManagerDto } from '../../../core/auth/dto/auth.dto';
+import { AUTH_ERROR } from 'src/core/auth/error/message.error';
 import { BasicResponse } from 'src/shared/basic.response';
 
 @Injectable()

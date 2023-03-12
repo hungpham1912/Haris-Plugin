@@ -1,5 +1,5 @@
 import { SetMetadata } from '@nestjs/common';
-import { MangerRole } from 'src/module/core/managers/entities/manager.entity';
+import { MangerRole } from 'src/core/managers/entities/manager.entity';
 
 export enum RoleKey {
   MANAGE = 'manage_roles',

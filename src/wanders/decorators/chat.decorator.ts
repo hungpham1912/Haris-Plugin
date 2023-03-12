@@ -1,5 +1,5 @@
 import { createParamDecorator, ExecutionContext } from '@nestjs/common';
-import { ChatFilter } from 'src/module/core/chats/models/chat.model';
+import { ChatFilter } from 'src/core/chats/models/chat.model';
 
 export const ChatFilterDecor = createParamDecorator(
   (data: unknown, ctx: ExecutionContext) => {

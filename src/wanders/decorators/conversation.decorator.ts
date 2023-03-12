@@ -1,5 +1,5 @@
 import { createParamDecorator, ExecutionContext } from '@nestjs/common';
-import { ConversationFilter } from 'src/module/core/conversations/models/conversation.model';
+import { ConversationFilter } from 'src/core/conversations/models/conversation.model';
 
 export const ConversationFilterDecor = createParamDecorator(
   (data: unknown, ctx: ExecutionContext) => {
