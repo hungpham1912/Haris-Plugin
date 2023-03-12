@@ -30,7 +30,7 @@ export class CliConversationService {
       const users = await this.usersService.findAll({ id: In(body.userIds) });
 
       param.name = this.buildName(users);
-      if (body.userIds.length > 2) {
+      if (body.userIds.length > 1) {
         param.type = ConversationType.GROUP;
       } else {
         param.type = ConversationType.DUO;
@@ -48,7 +48,7 @@ export class CliConversationService {
         },
       );
 
-      if (body.userIds.length > 2) {
+      if (body.userIds.length > 1) {
         userConversationParam.push({
           userId: user.id,
           conversationId: conversation.id,
