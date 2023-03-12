@@ -11,7 +11,7 @@ export class UserConversationService {
     private readonly chatRepository: Repository<UserConversation>,
   ) {}
 
-  async create(create: CreateUserConversationParam) {
+  async multipleCreates(create: CreateUserConversationParam[]) {
     try {
       const param = this.chatRepository.create(create);
       return await this.chatRepository.save(param);
