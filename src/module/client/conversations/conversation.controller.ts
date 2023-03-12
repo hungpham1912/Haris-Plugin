@@ -2,14 +2,17 @@ import { Body, Controller, Get, Post, UseGuards } from '@nestjs/common';
 import {
   ApiBearerAuth,
   ApiOperation,
+  ApiQuery,
   ApiResponse,
   ApiTags,
 } from '@nestjs/swagger';
 import { PaginateQuery } from 'nestjs-paginate';
 import { CreateConversationDto } from 'src/module/core/conversations/dto/create-conversation.dto';
+import { ConversationFilter } from 'src/module/core/conversations/models/conversation.model';
 import { User } from 'src/module/core/users/entities/user.entity';
 import { BASE_ERROR } from 'src/shared/error/base.error';
 import { AuthResponse } from 'src/wanders/decorators/auth.decorator';
+import { ConversationFilterDecor } from 'src/wanders/decorators/conversation.decorator';
 import { JwtUserAuthGuard } from '../auth/guards/jwt-auth.guard';
 import { CliConversationService } from './conversation.service';
 
@@ -37,15 +40,35 @@ export class CliConversationController {
     }
   }
 
+  @ApiQuery({
+    example: 1,
+    name: 'page',
+  })
+  @ApiQuery({
+    example: 10,
+    name: 'limit',
+  })
+  @ApiQuery({
+    example: 10,
+    name: 'showName',
+  })
   @Get('/conversations')
   @UseGuards(JwtUserAuthGuard)
   @ApiBearerAuth()
   @ApiOperation({ summary: 'User chats' })
   @ApiResponse({ status: 401, description: 'Unauthorized.' })
   @ApiResponse({ status: 403, description: 'Forbidden.' })
-  async getConversation(@AuthResponse() user: User, query: PaginateQuery) {
+  async getConversation(
+    @AuthResponse() user: User,
+    query: PaginateQuery,
+    @ConversationFilterDecor() filter: ConversationFilter,
+  ) {
     try {
-      return await this.cliConversationService.getConversation(user, query);
+      return await this.cliConversationService.getConversation(
+        user,
+        query,
+        filter,
+      );
     } catch (error) {
       return BASE_ERROR[0];
     }

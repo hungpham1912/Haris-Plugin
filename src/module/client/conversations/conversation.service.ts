@@ -6,6 +6,7 @@ import {
   CreateConversationParam,
 } from 'src/module/core/conversations/dto/create-conversation.dto';
 import { ConversationType } from 'src/module/core/conversations/entities/conversation.entity';
+import { ConversationFilter } from 'src/module/core/conversations/models/conversation.model';
 import { User } from 'src/module/core/users/entities/user.entity';
 import { UsersService } from 'src/module/core/users/users.service';
 import { CreateUserConversationParam } from 'src/module/core/user_conversation/dto/create-user_conversation.dto';
@@ -31,10 +32,10 @@ export class CliConversationService {
 
       const users = await this.usersService.findAll({ id: In(body.userIds) });
 
-      const name = this.buildName(users, user);
       if (body.userIds.length > 1) {
         param.type = ConversationType.GROUP;
         param.backgroundUrl = ENV_CONFIG.source.conversation.defaultAvatar;
+        const name = this.buildNameGroupChat(users, user);
 
         const conversation = await this.conversationsService.create(param);
 
@@ -68,7 +69,7 @@ export class CliConversationService {
             return {
               userId: value.id,
               conversationId: conversation.id,
-              nickName: user.fullName,
+              nickName: value.fullName,
               showName: user.fullName,
             };
           },
@@ -87,25 +88,31 @@ export class CliConversationService {
     }
   }
 
-  buildName(users: User[], user: User) {
-    let name = '';
-    if (users.length > 1) {
-      users.forEach((value, index: number) => {
-        if (index > 0) name += `, ${value.fullName.split(' ')[0]}`;
-        else name += value.fullName.split(' ')[0];
-      });
-    } else {
-    }
+  buildNameGroupChat(users: User[], user: User) {
+    let name = user.fullName;
+    users.forEach((value) => {
+      name += `, ${value.fullName.split(' ')[0]}`;
+    });
+
     return name;
   }
 
-  async getConversation(user: User, query: PaginateQuery) {
-    // try {
-    //   const { limit, page } = query;
-    //   return await this.usersService.paginate(limit, page, query, filter);
-    // } catch (error) {
-    //   console.log('🚀 ~ file: users.service.ts:15 ~ ', error);
-    //   throw error;
-    // }
+  async getConversation(
+    user: User,
+    query: PaginateQuery,
+    filter: ConversationFilter,
+  ) {
+    try {
+      const { limit, page } = query;
+      return await this.userConversationService.paginate(
+        limit,
+        page,
+        query,
+        filter,
+      );
+    } catch (error) {
+      console.log('🚀 ~ file: users.service.ts:15 ~ ', error);
+      throw error;
+    }
   }
 }
