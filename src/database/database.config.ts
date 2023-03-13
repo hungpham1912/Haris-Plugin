@@ -1,5 +1,4 @@
 import { Injectable, Scope, Logger } from '@nestjs/common';
-import { TypeOrmModuleOptions } from '@nestjs/typeorm';
 import { Chat } from 'src/core/chats/entities/chat.entity';
 import { Conversation } from 'src/core/conversations/entities/conversation.entity';
 import { Manager } from 'src/core/managers/entities/manager.entity';
@@ -9,34 +8,16 @@ import { UserConversation } from 'src/core/user_conversation/entities/user_conve
 import { ENV_CONFIG } from 'src/shared/constants/env.constant';
 import { DataSource, DataSourceOptions } from 'typeorm';
 
-export class DatabaseConfig {
-  config: TypeOrmModuleOptions = {
-    type: 'postgres',
-    entities: [Manager, User, Chat, UserConversation, Conversation, Talked],
-    synchronize: true,
-    extra: {
-      ssl: {
-        rejectUnauthorized: false,
-      },
-    },
-    ...ENV_CONFIG.database,
-  };
-
-  getConfig() {
-    return this.config;
-  }
-}
-
 export const SOURCE_CONFIG: DataSourceOptions = {
   type: 'postgres',
   entities: [Manager, User, Chat, UserConversation, Conversation, Talked],
-  synchronize: false,
   extra: {
     ssl: {
       rejectUnauthorized: false,
     },
   },
-  ...ENV_CONFIG.database,
+  synchronize: false,
+  ...ENV_CONFIG.database.harisPrd,
 };
 
 @Injectable({
