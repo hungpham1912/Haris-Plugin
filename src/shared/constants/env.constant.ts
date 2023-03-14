@@ -15,6 +15,7 @@ export const ENV_CONFIG = {
   system: {
     port: getConfig('system.port') || 3000,
     apiVersion: getConfig('system.api_version'),
+    characters: getConfig('system.characters'),
   },
   source: {
     user: {
@@ -22,6 +23,9 @@ export const ENV_CONFIG = {
     },
     conversation: {
       defaultAvatar: getConfig('source.conversation.defaultAvatar'),
+    },
+    merchant: {
+      lenghtMerchantCode: getConfig('source.lengthMerchantCode'),
     },
   },
 };

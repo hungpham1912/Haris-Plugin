@@ -6,6 +6,7 @@ import { AppModule } from './app.module';
 import { Source } from './database/database.config';
 import { ClientModule } from './module/client/client.module';
 import { OperatorModule } from './module/operator/operator.module';
+import { PluginModule } from './module/plugin/plugin.module';
 import { ENV_CONFIG } from './shared/constants/env.constant';
 
 async function bootstrap() {
@@ -42,6 +43,19 @@ async function bootstrap() {
   });
 
   SwaggerModule.setup('operator/docs/api', app, OperatorDocument);
+
+  // Setup Plugin Swagger
+  const PluginSwagger = new DocumentBuilder()
+    .setTitle('Project API - Plugin')
+    .setDescription('API documentation for version 1 project')
+    .setVersion('1.0')
+    .addBearerAuth()
+    .build();
+  const PluginDocument = SwaggerModule.createDocument(app, PluginSwagger, {
+    include: [PluginModule],
+  });
+
+  SwaggerModule.setup('plugin/docs/api', app, PluginDocument);
 
   // Setup auto-validations
   app.useGlobalPipes(new ValidationPipe({ transform: true }));
