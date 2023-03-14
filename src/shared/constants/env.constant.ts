@@ -25,7 +25,7 @@ export const ENV_CONFIG = {
       defaultAvatar: getConfig('source.conversation.defaultAvatar'),
     },
     merchant: {
-      lenghtMerchantCode: getConfig('source.lengthMerchantCode'),
+      lenghtMerchantCode: getConfig('source.merchant.lengthMerchantCode'),
     },
   },
 };
