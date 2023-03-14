@@ -22,14 +22,23 @@ export class PluginMerchantController {
   @ApiBearerAuth()
   @Post('register')
   @Public()
-  @UseGuards(JwtAuthManagerGuard)
   @ApiOperation({ summary: 'Register merchant app' })
   @ApiResponse({ status: 401, description: 'Unauthorized.' })
   @ApiResponse({ status: 403, description: 'Forbidden.' })
   @ApiResponse({ status: 200, description: 'OK' })
-  register() {
+  async register() {
     try {
-      return this.pluginMerchantService.register(0);
+      return await this.pluginMerchantService.register(0);
+    } catch (error) {
+      return BASE_ERROR[0];
+    }
+  }
+
+  @Post('demo')
+  @Public()
+  async demo() {
+    try {
+      return await this.pluginMerchantService.demo();
     } catch (error) {
       return BASE_ERROR[0];
     }

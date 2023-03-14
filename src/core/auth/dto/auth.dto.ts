@@ -6,6 +6,8 @@ import {
   IsNotEmpty,
   IsPhoneNumber,
   IsString,
+  MaxLength,
+  MinLength,
 } from 'class-validator';
 
 export class LoginDto {
@@ -111,4 +113,22 @@ export class RegisterUserDto {
   @IsNotEmpty()
   @IsPhoneNumber('VN')
   phone: string;
+}
+
+export class RegisterMerchantUserDto {
+  @ApiProperty({
+    description: '32 length',
+    example: 'L6JkskgIW3rIMGIiyZ3L2GpIKET0LjsE',
+  })
+  @IsDefined()
+  @IsString()
+  @MinLength(32)
+  @MaxLength(32)
+  @IsNotEmpty()
+  merchantUserCode: string;
+}
+
+export class CreateMerchantUserParam extends RegisterMerchantUserDto {
+  role: string;
+  merchantId: string;
 }

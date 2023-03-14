@@ -40,4 +40,9 @@ export class PluginMerchantService {
       throw error;
     }
   }
+
+  async demo() {
+    const code = 'L6JkskgIW3rIMGIiyZ3L2GpIKET0LjsE';
+    return code;
+  }
 }
