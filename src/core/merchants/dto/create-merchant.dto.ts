@@ -1,1 +1,3 @@
-export class CreateMerchantDto {}
+export class CreateMerchantParam {
+  merchantCode: string;
+}

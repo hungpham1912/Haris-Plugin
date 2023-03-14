@@ -1,26 +1,21 @@
 import { Injectable } from '@nestjs/common';
-import { CreateMerchantDto } from './dto/create-merchant.dto';
-import { UpdateMerchantDto } from './dto/update-merchant.dto';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
+import { CreateMerchantParam } from './dto/create-merchant.dto';
+import { Merchant } from './entities/merchant.entity';
 
 @Injectable()
 export class MerchantsService {
-  create(createMerchantDto: CreateMerchantDto) {
-    return 'This action adds a new merchant';
-  }
-
-  findAll() {
-    return `This action returns all merchants`;
-  }
-
-  findOne(id: number) {
-    return `This action returns a #${id} merchant`;
-  }
-
-  update(id: number, updateMerchantDto: UpdateMerchantDto) {
-    return `This action updates a #${id} merchant`;
-  }
-
-  remove(id: number) {
-    return `This action removes a #${id} merchant`;
+  constructor(
+    @InjectRepository(Merchant)
+    private readonly merchantRepository: Repository<Merchant>,
+  ) {}
+  async create(body: CreateMerchantParam) {
+    try {
+      const params = this.merchantRepository.create(body);
+      return await this.merchantRepository.save(params);
+    } catch (error) {
+      throw error;
+    }
   }
 }

@@ -3,10 +3,10 @@ import { getConfig } from '../lib/config/config.lib';
 export const ENV_CONFIG = {
   database: {
     harisPrd: {
-      host: getConfig('database.host'),
-      username: getConfig('database.username'),
-      password: getConfig('database.password'),
-      database: getConfig('database.database'),
+      host: getConfig('database.harisPrd.host'),
+      username: getConfig('database.harisPrd.username'),
+      password: getConfig('database.harisPrd.password'),
+      database: getConfig('database.harisPrd.database'),
     },
   },
   jwt: {
