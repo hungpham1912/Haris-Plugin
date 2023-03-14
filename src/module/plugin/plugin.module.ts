@@ -1,4 +1,9 @@
 import { Module } from '@nestjs/common';
+import { PluginMerchantModule } from './merchants/merchant.module';
 
-@Module({})
+@Module({
+  imports: [PluginMerchantModule],
+  controllers: [],
+  exports: [],
+})
 export class PluginModule {}

@@ -2,6 +2,7 @@ import { Injectable, Scope, Logger } from '@nestjs/common';
 import { Chat } from 'src/core/chats/entities/chat.entity';
 import { Conversation } from 'src/core/conversations/entities/conversation.entity';
 import { Manager } from 'src/core/managers/entities/manager.entity';
+import { Merchant } from 'src/core/merchants/entities/merchant.entity';
 import { Talked } from 'src/core/talkeds/entities/talked.entity';
 import { User } from 'src/core/users/entities/user.entity';
 import { UserConversation } from 'src/core/user_conversation/entities/user_conversation.entity';
@@ -10,7 +11,15 @@ import { DataSource, DataSourceOptions } from 'typeorm';
 
 export const SOURCE_CONFIG: DataSourceOptions = {
   type: 'postgres',
-  entities: [Manager, User, Chat, UserConversation, Conversation, Talked],
+  entities: [
+    Manager,
+    User,
+    Chat,
+    UserConversation,
+    Conversation,
+    Talked,
+    Merchant,
+  ],
   extra: {
     ssl: {
       rejectUnauthorized: false,

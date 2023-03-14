@@ -5,6 +5,7 @@ import { customProvider } from './app.provider';
 import { Chat } from './core/chats/entities/chat.entity';
 import { Conversation } from './core/conversations/entities/conversation.entity';
 import { Manager } from './core/managers/entities/manager.entity';
+import { Merchant } from './core/merchants/entities/merchant.entity';
 import { Talked } from './core/talkeds/entities/talked.entity';
 import { User } from './core/users/entities/user.entity';
 import { UserConversation } from './core/user_conversation/entities/user_conversation.entity';
@@ -17,7 +18,15 @@ import { ENV_CONFIG } from './shared/constants/env.constant';
   imports: [
     TypeOrmModule.forRoot({
       type: 'postgres',
-      entities: [Manager, User, Chat, UserConversation, Conversation, Talked],
+      entities: [
+        Manager,
+        User,
+        Chat,
+        UserConversation,
+        Conversation,
+        Talked,
+        Merchant,
+      ],
       extra: {
         ssl: {
           rejectUnauthorized: false,

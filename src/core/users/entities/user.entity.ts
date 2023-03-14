@@ -7,6 +7,7 @@ import { Merchant } from 'src/core/merchants/entities/merchant.entity';
 
 export enum UserRole {
   USER = 'user',
+  MERCHANT_USER = 'merchant_user',
 }
 
 @Entity('users')
