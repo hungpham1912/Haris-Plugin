@@ -10,6 +10,7 @@ import { User } from './core/users/entities/user.entity';
 import { UserConversation } from './core/user_conversation/entities/user_conversation.entity';
 import { ClientModule } from './module/client/client.module';
 import { OperatorModule } from './module/operator/operator.module';
+import { PluginModule } from './module/plugin/plugin.module';
 import { ENV_CONFIG } from './shared/constants/env.constant';
 
 @Module({
@@ -38,6 +39,13 @@ import { ENV_CONFIG } from './shared/constants/env.constant';
       {
         path: 'api/client',
         module: ClientModule,
+      },
+    ]),
+    PluginModule,
+    RouterModule.register([
+      {
+        path: 'api/plugin',
+        module: PluginModule,
       },
     ]),
   ],
