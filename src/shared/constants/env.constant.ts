@@ -28,4 +28,9 @@ export const ENV_CONFIG = {
       lenghtMerchantCode: getConfig('source.merchant.lengthMerchantCode'),
     },
   },
+  vietQR: {
+    clientID: getConfig('vietQR.clientID'),
+    apiKey: getConfig('vietQR.apiKey'),
+    baseUrl: getConfig('vietQR.baseUrl'),
+  },
 };

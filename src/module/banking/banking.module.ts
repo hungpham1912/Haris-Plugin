@@ -1,5 +1,5 @@
 import { Module } from '@nestjs/common';
-import { BankModule } from './banks/bank.module';
+import { BankModule } from './vietQR/banks/bank.module';
 
 @Module({
   imports: [BankModule],
