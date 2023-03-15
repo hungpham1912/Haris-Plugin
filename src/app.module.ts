@@ -9,6 +9,7 @@ import { Merchant } from './core/merchants/entities/merchant.entity';
 import { Talked } from './core/talkeds/entities/talked.entity';
 import { User } from './core/users/entities/user.entity';
 import { UserConversation } from './core/user_conversation/entities/user_conversation.entity';
+import { BankingModule } from './module/banking/banking.module';
 import { ClientModule } from './module/client/client.module';
 import { OperatorModule } from './module/operator/operator.module';
 import { PluginModule } from './module/plugin/plugin.module';
@@ -55,6 +56,13 @@ import { ENV_CONFIG } from './shared/constants/env.constant';
       {
         path: 'api/plugin',
         module: PluginModule,
+      },
+    ]),
+    BankingModule,
+    RouterModule.register([
+      {
+        path: 'api/banking',
+        module: BankingModule,
       },
     ]),
   ],
