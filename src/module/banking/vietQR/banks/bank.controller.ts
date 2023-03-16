@@ -20,7 +20,7 @@ export class BanksController {
     try {
       return await this.bankService.getBanks();
     } catch (error) {
-      return { ...BASE_ERROR[0], data: error?.response?.data };
+      return { ...BASE_ERROR[0], detail: error?.response?.data };
     }
   }
 
@@ -34,7 +34,7 @@ export class BanksController {
     try {
       return await this.bankService.createQR(body);
     } catch (error) {
-      return { ...BASE_ERROR[0], data: error?.response?.data };
+      return { ...BASE_ERROR[0], detail: error?.response?.data };
     }
   }
 }

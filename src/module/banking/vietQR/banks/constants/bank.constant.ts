@@ -5,4 +5,7 @@ export const BANK_CONSTANT = {
     banks: `${ENV_CONFIG.vietQR.baseUrl}/v2/banks`,
     generate: `${ENV_CONFIG.vietQR.baseUrl}/v2/generate`,
   },
+  vietQR: {
+    codeSuccess: '00',
+  },
 };

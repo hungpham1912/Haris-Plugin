@@ -1,6 +1,7 @@
 import { HttpService } from '@nestjs/axios';
-import { Injectable } from '@nestjs/common';
+import { HttpStatus, Injectable } from '@nestjs/common';
 import { CreateQRDto } from 'src/core/banks/dto/banks.dto';
+import { BANK_ERROR } from 'src/core/banks/errors/bank.error';
 import { ENV_CONFIG } from 'src/shared/constants/env.constant';
 import { BANK_CONSTANT } from './constants/bank.constant';
 
@@ -39,7 +40,16 @@ export class BankService {
         body,
         { headers },
       );
-      return res.data;
+      const { data } = res;
+
+      if (data?.code != BANK_CONSTANT.vietQR.codeSuccess) {
+        return {
+          statusCode: HttpStatus.UNPROCESSABLE_ENTITY,
+          error: BANK_ERROR[1],
+          detail: data,
+        };
+      }
+      return data;
     } catch (error) {
       console.log('🚀 ~ file: bank.service.ts:15 ~', error?.response?.data);
       throw error;
