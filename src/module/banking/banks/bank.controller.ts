@@ -3,12 +3,12 @@ import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { CreateQRDto } from 'src/core/banks/dto/banks.dto';
 import { BASE_ERROR } from 'src/shared/error/base.error';
 import { Public } from 'src/wanders/decorators/public.decorator';
-import { BankService } from './bank.service';
+import { ClientBankService } from './bank.service';
 
 @ApiTags('Banks')
 @Controller('banks')
-export class BanksController {
-  constructor(private readonly bankService: BankService) {}
+export class ClientBanksController {
+  constructor(private readonly bankService: ClientBankService) {}
 
   @Get('getBanks')
   @Public()

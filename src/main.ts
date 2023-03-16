@@ -4,7 +4,7 @@ import { NestExpressApplication } from '@nestjs/platform-express';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { AppModule } from './app.module';
 import { Source } from './database/database.config';
-import { BankModule } from './module/banking/banks/bank.module';
+import { BankingModule } from './module/banking/banking.module';
 import { ClientModule } from './module/client/client.module';
 import { OperatorModule } from './module/operator/operator.module';
 import { PluginModule } from './module/plugin/plugin.module';
@@ -66,7 +66,7 @@ async function bootstrap() {
     .addBearerAuth()
     .build();
   const BankingDocument = SwaggerModule.createDocument(app, BankingSwagger, {
-    include: [BankModule],
+    include: [BankingModule],
   });
 
   SwaggerModule.setup('banking/docs/api', app, BankingDocument);

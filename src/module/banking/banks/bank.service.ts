@@ -6,7 +6,7 @@ import { ENV_CONFIG } from 'src/shared/constants/env.constant';
 import { BANK_CONSTANT } from './constants/bank.constant';
 
 @Injectable()
-export class BankService {
+export class ClientBankService {
   constructor(private readonly httpService: HttpService) {}
 
   async getBanks() {
