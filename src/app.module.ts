@@ -15,6 +15,7 @@ import { OperatorModule } from './module/operator/operator.module';
 import { PluginModule } from './module/plugin/plugin.module';
 import { ENV_CONFIG } from './shared/constants/env.constant';
 import { PaymentsModule } from './core/payments/payments.module';
+import { GatewaysModule } from './core/gateways/gateways.module';
 
 @Module({
   imports: [
@@ -66,7 +67,6 @@ import { PaymentsModule } from './core/payments/payments.module';
         module: BankingModule,
       },
     ]),
-    PaymentsModule,
   ],
   providers: [...customProvider],
 })

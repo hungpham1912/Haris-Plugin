@@ -1,6 +1,6 @@
 import { HttpModule } from '@nestjs/axios';
 import { Module } from '@nestjs/common';
-import { ClientBankService } from 'src/module/banking/banks/bank.service';
+import { BankingBankService } from 'src/module/banking/banks/bank.service';
 
 @Module({
   imports: [
@@ -9,7 +9,7 @@ import { ClientBankService } from 'src/module/banking/banks/bank.service';
       maxRedirects: 5,
     }),
   ],
-  providers: [ClientBankService],
-  exports: [ClientBankService],
+  providers: [BankingBankService],
+  exports: [BankingBankService],
 })
 export class BankModule {}

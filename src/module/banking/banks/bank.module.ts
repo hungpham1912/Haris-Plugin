@@ -6,4 +6,4 @@ import { BankModule } from 'src/core/banks/bank.module';
   providers: [BankModule],
   exports: [BankModule],
 })
-export class ClientBankModule {}
+export class BankingBankModule {}
