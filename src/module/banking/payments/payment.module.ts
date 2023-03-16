@@ -6,4 +6,4 @@ import { PaymentsModule } from 'src/core/payments/payments.module';
   providers: [PaymentsModule],
   exports: [PaymentsModule],
 })
-export class ClientPaymentModule {}
+export class BankingPaymentsModule {}

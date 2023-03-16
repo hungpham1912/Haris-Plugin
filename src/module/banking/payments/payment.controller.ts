@@ -2,12 +2,12 @@ import { Body, Controller, Post } from '@nestjs/common';
 import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { PaymentByMomoParam } from 'src/core/payments/dto/create-payment.dto';
 import { BASE_ERROR } from 'src/shared/error/base.error';
-import { ClientPaymentService } from './payment.service';
+import { BankingPaymentService } from './payment.service';
 
 @ApiTags('Payments')
 @Controller('payments')
-export class ClientPaymentController {
-  constructor(private readonly cliPaymentService: ClientPaymentService) {}
+export class BankingPaymentController {
+  constructor(private readonly cliPaymentService: BankingPaymentService) {}
 
   @Post('momo')
   @ApiOperation({ summary: 'Payment by momo' })
