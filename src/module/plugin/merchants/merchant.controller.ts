@@ -19,21 +19,6 @@ import { PluginMerchantService } from './merchant.service';
 export class PluginMerchantController {
   constructor(private readonly pluginMerchantService: PluginMerchantService) {}
 
-  @ApiBearerAuth()
-  @Post('register')
-  @Public()
-  @ApiOperation({ summary: 'Register merchant app' })
-  @ApiResponse({ status: 401, description: 'Unauthorized.' })
-  @ApiResponse({ status: 403, description: 'Forbidden.' })
-  @ApiResponse({ status: 200, description: 'OK' })
-  async register() {
-    try {
-      return await this.pluginMerchantService.register(0);
-    } catch (error) {
-      return BASE_ERROR[0];
-    }
-  }
-
   @Post('demo')
   @Public()
   async demo() {

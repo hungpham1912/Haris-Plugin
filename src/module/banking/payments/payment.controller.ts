@@ -1,5 +1,6 @@
-import { Body, Controller, Post } from '@nestjs/common';
-import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
+import { Body, Controller, Post, UseGuards } from '@nestjs/common';
+import { ApiHeader, ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
+import { MerchantGuard } from 'src/core/merchants/guards/merchant.guard';
 import { PaymentByMomoParam } from 'src/core/payments/dto/create-payment.dto';
 import { BASE_ERROR } from 'src/shared/error/base.error';
 import { BankingPaymentService } from './payment.service';
@@ -10,6 +11,8 @@ export class BankingPaymentController {
   constructor(private readonly cliPaymentService: BankingPaymentService) {}
 
   @Post('momo')
+  @UseGuards(MerchantGuard)
+  @ApiHeader({ name: 'Authorization', description: 'Signature' })
   @ApiOperation({ summary: 'Payment by momo' })
   @ApiResponse({ status: 401, description: 'Unauthorized.' })
   @ApiResponse({ status: 403, description: 'Forbidden.' })
