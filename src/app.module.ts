@@ -16,6 +16,7 @@ import { PluginModule } from './module/plugin/plugin.module';
 import { ENV_CONFIG } from './shared/constants/env.constant';
 import { PaymentsModule } from './core/payments/payments.module';
 import { GatewaysModule } from './core/gateways/gateways.module';
+import { MerchantInfoModule } from './core/merchant_info/merchant_info.module';
 
 @Module({
   imports: [
@@ -67,6 +68,7 @@ import { GatewaysModule } from './core/gateways/gateways.module';
         module: BankingModule,
       },
     ]),
+    MerchantInfoModule,
   ],
   providers: [...customProvider],
 })
