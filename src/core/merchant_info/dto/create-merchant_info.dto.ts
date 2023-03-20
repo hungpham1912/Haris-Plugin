@@ -1,5 +1,5 @@
 export class CreateMerchantInfoDto {
-  privatekey: string;
+  privateKey: string;
   publicKey: string;
   merchantId: string;
 }

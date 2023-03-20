@@ -1,25 +1,31 @@
 import { Injectable, Scope, Logger } from '@nestjs/common';
 import { Chat } from 'src/core/chats/entities/chat.entity';
 import { Conversation } from 'src/core/conversations/entities/conversation.entity';
+import { Gateway } from 'src/core/gateways/entities/gateway.entity';
 import { Manager } from 'src/core/managers/entities/manager.entity';
 import { Merchant } from 'src/core/merchants/entities/merchant.entity';
+import { MerchantInfo } from 'src/core/merchant_info/entities/merchant_info.entity';
 import { Talked } from 'src/core/talkeds/entities/talked.entity';
 import { User } from 'src/core/users/entities/user.entity';
 import { UserConversation } from 'src/core/user_conversation/entities/user_conversation.entity';
 import { ENV_CONFIG } from 'src/shared/constants/env.constant';
 import { DataSource, DataSourceOptions } from 'typeorm';
 
+export const ENTITIES = [
+  Manager,
+  User,
+  Chat,
+  UserConversation,
+  Conversation,
+  Talked,
+  Merchant,
+  MerchantInfo,
+  Gateway,
+];
+
 export const SOURCE_CONFIG: DataSourceOptions = {
   type: 'postgres',
-  entities: [
-    Manager,
-    User,
-    Chat,
-    UserConversation,
-    Conversation,
-    Talked,
-    Merchant,
-  ],
+  entities: ENTITIES,
   extra: {
     ssl: {
       rejectUnauthorized: false,

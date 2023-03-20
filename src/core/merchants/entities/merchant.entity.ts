@@ -5,10 +5,4 @@ import { Column, Entity } from 'typeorm';
 export class Merchant extends BaseEntity {
   @Column({ nullable: false, default: '' })
   merchantCode: string;
-
-  @Column({ nullable: false, default: '' })
-  publicKey: string;
-
-  @Column({ nullable: false, default: '' })
-  privateKey: string;
 }

@@ -5,7 +5,7 @@ import { Column, Entity, ManyToOne } from 'typeorm';
 @Entity('merchant_info')
 export class MerchantInfo extends BaseEntity {
   @Column({ nullable: false })
-  privatekey: string;
+  privateKey: string;
 
   @Column({ nullable: false })
   publicKey: string;

@@ -1,4 +1,5 @@
 import { Merchant } from 'src/core/merchants/entities/merchant.entity';
+import { BaseEntity } from 'src/shared/entities/base.entity';
 import { Column, Entity, ManyToOne } from 'typeorm';
 
 export enum GatewayType {
@@ -7,7 +8,7 @@ export enum GatewayType {
 }
 
 @Entity('gateways')
-export class Gateway {
+export class Gateway extends BaseEntity {
   @Column({
     nullable: false,
     default: GatewayType.MOMO,
