@@ -1,5 +1,6 @@
 import { Injectable } from '@nestjs/common';
-import { RegisterMerchantUserDto, SignDto } from 'src/core/auth/dto/auth.dto';
+import { RegisterMerchantUserDto } from 'src/core/auth/dto/auth.dto';
+import { SignDto } from 'src/core/merchants/dto/auth-merchant.dto';
 import { MerchantsService } from 'src/core/merchants/merchants.service';
 import { MerchantInfoService } from 'src/core/merchant_info/merchant_info.service';
 import { generateKey } from 'src/shared/helper/system.helper';
@@ -32,5 +33,7 @@ export class PluginAuthService {
     }
   }
 
-  async sign(body: SignDto) {}
+  async sign(body: SignDto) {
+    const str = `${body.merchantCode}\n${body.timestamp}\n${body.body}`;
+  }
 }

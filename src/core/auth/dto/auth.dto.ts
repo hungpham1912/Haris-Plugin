@@ -4,7 +4,6 @@ import {
   IsDefined,
   IsEmail,
   IsNotEmpty,
-  IsNumber,
   IsPhoneNumber,
   IsString,
   MaxLength,
@@ -132,33 +131,4 @@ export class RegisterMerchantUserDto {
 export class CreateMerchantUserParam extends RegisterMerchantUserDto {
   role: string;
   merchantId: string;
-}
-
-export class SignDto {
-  @ApiProperty({
-    description: '32 length',
-    example: 'L6JkskgIW3rIMGIiyZ3L2GpIKET0LjsE',
-  })
-  @IsDefined()
-  @IsString()
-  @MinLength(32)
-  @MaxLength(32)
-  @IsNotEmpty()
-  merchantCode: string;
-
-  @ApiProperty({
-    example: '',
-  })
-  @IsDefined()
-  @IsNumber()
-  @IsNotEmpty()
-  timestamp: string;
-
-  @ApiProperty({
-    example: '',
-  })
-  @IsDefined()
-  @IsNumber()
-  @IsNotEmpty()
-  body: string;
 }
