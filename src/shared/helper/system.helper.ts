@@ -14,23 +14,15 @@ export function makeId(length: number) {
 }
 
 export function generateKey() {
-  const key = crypto.generateKeyPairSync('rsa', {
+  return crypto.generateKeyPairSync('rsa', {
     modulusLength: 2048,
     publicKeyEncoding: {
       type: 'spki',
-      format: 'der',
+      format: 'pem',
     },
     privateKeyEncoding: {
       type: 'pkcs8',
-      format: 'der',
+      format: 'pem',
     },
   });
-  return {
-    privateKey: `-----BEGIN RSA PRIVATE KEY-----\n${key.privateKey.toString(
-      'base64',
-    )}\n-----END RSA PRIVATE KEY-----`,
-    publicKey: `-----BEGIN RSA PUBLIC KEY-----\n${key.publicKey.toString(
-      'base64',
-    )}\n-----END RSA PUBLIC KEY-----`,
-  };
 }
