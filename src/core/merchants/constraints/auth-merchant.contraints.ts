@@ -22,9 +22,9 @@ export class MerchantICodeExistConstraint
 
 @ValidatorConstraint({ async: true })
 export class SignBodyConstraint implements ValidatorConstraintInterface {
-  async validate(value: string) {
+  async validate(value: any) {
     try {
-      const body = JSON.parse(value);
+      // const body = JSON.parse(value);
       return true;
     } catch (error) {
       console.log('🚀 ~ file: auth-merchant.contraints.ts:30 ~ ', error);

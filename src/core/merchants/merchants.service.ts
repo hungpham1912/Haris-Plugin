@@ -33,6 +33,14 @@ export class MerchantsService {
     }
   }
 
+  async findOne(query: any) {
+    try {
+      return await this.merchantRepository.findOne({ where: query });
+    } catch (error) {
+      throw error;
+    }
+  }
+
   async createMerchantCode(retry: number) {
     try {
       const merchantCode = makeId(32);

@@ -17,4 +17,12 @@ export class MerchantInfoService {
       throw error;
     }
   }
+
+  async findOne(query: any) {
+    try {
+      return await this.merchantInfoRepository.findOne({ where: query });
+    } catch (error) {
+      throw error;
+    }
+  }
 }

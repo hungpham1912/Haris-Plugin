@@ -13,7 +13,7 @@ export class PluginAuthController {
 
   @Post('sign')
   @Public()
-  @ApiOperation({ summary: 'Register merchant app' })
+  @ApiOperation({ summary: 'Gen signature' })
   @ApiResponse({ status: 401, description: 'Unauthorized.' })
   @ApiResponse({ status: 403, description: 'Forbidden.' })
   @ApiResponse({ status: 200, description: 'OK' })
