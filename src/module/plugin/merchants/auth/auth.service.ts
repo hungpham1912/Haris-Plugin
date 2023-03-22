@@ -3,7 +3,7 @@ import { RegisterMerchantUserDto } from 'src/core/auth/dto/auth.dto';
 import { SignDto } from 'src/core/merchants/dto/auth-merchant.dto';
 import { MerchantsService } from 'src/core/merchants/merchants.service';
 import { MerchantInfoService } from 'src/core/merchant_info/merchant_info.service';
-import { generateKey } from 'src/shared/helper/system.helper';
+import { generateKey, genSignature } from 'src/shared/helper/system.helper';
 import crypto = require('crypto');
 
 @Injectable()
@@ -36,17 +36,12 @@ export class PluginAuthService {
 
   async sign(data: SignDto) {
     try {
-      const { merchantCode, timestamp, body } = data;
-      const str = `${merchantCode}\n${timestamp}\n${JSON.stringify(body)}`;
+      const { merchantCode } = data;
       const merchant = await this.merchantsService.findOne({ merchantCode });
       const info = await this.merchantInfoService.findOne({
         merchantId: merchant.id,
       });
-      const encryptedData = crypto.createSign('RSA-SHA256');
-      encryptedData.write(str);
-      encryptedData.end();
-      const signature = encryptedData.sign(info.privateKey, 'base64');
-      return { signature };
+      return genSignature(data, info.privateKey);
     } catch (error) {
       console.log('🚀 ~ file: auth.service.ts:50 ~ :', error);
       throw error;

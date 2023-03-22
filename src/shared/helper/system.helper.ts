@@ -1,5 +1,6 @@
 import { ENV_CONFIG } from '../constants/env.constant';
 import crypto = require('crypto');
+import { SignDto } from 'src/core/merchants/dto/auth-merchant.dto';
 
 export function makeId(length: number) {
   let result = '';
@@ -25,4 +26,19 @@ export function generateKey() {
       format: 'pem',
     },
   });
+}
+
+export function genSignature(data: SignDto, key: string) {
+  try {
+    const { merchantCode, timestamp, body } = data;
+    const str = `${merchantCode}\n${timestamp}\n${JSON.stringify(body)}`;
+    const encryptedData = crypto.createSign('RSA-SHA256');
+    encryptedData.write(str);
+    encryptedData.end();
+    const signature = encryptedData.sign(key, 'base64');
+    return { signature };
+  } catch (error) {
+    console.log('🚀 ~ file: auth.service.ts:50 ~ :', error);
+    throw error;
+  }
 }
