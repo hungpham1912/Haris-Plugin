@@ -7,7 +7,6 @@ import { ClientModule } from './module/client/client.module';
 import { OperatorModule } from './module/operator/operator.module';
 import { PluginModule } from './module/plugin/plugin.module';
 import { ENV_CONFIG } from './shared/constants/env.constant';
-import { MerchantInfoModule } from './core/merchant_info/merchant_info.module';
 import { ENTITIES } from './database/database.config';
 
 @Module({
@@ -52,7 +51,6 @@ import { ENTITIES } from './database/database.config';
         module: BankingModule,
       },
     ]),
-    MerchantInfoModule,
   ],
   providers: [...customProvider],
 })

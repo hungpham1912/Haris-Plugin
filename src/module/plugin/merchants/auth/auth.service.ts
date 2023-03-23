@@ -4,7 +4,6 @@ import { SignDto } from 'src/core/merchants/dto/auth-merchant.dto';
 import { MerchantsService } from 'src/core/merchants/merchants.service';
 import { MerchantInfoService } from 'src/core/merchant_info/merchant_info.service';
 import { generateKey, genSignature } from 'src/shared/helper/system.helper';
-import crypto = require('crypto');
 
 @Injectable()
 export class PluginAuthService {

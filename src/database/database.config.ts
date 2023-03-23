@@ -2,6 +2,7 @@ import { Injectable, Scope, Logger } from '@nestjs/common';
 import { Chat } from 'src/core/chats/entities/chat.entity';
 import { Conversation } from 'src/core/conversations/entities/conversation.entity';
 import { Gateway } from 'src/core/gateways/entities/gateway.entity';
+import { Log } from 'src/core/logs/entities/log.entity';
 import { Manager } from 'src/core/managers/entities/manager.entity';
 import { Merchant } from 'src/core/merchants/entities/merchant.entity';
 import { MerchantInfo } from 'src/core/merchant_info/entities/merchant_info.entity';
@@ -21,6 +22,7 @@ export const ENTITIES = [
   Merchant,
   MerchantInfo,
   Gateway,
+  Log,
 ];
 
 export const SOURCE_CONFIG: DataSourceOptions = {

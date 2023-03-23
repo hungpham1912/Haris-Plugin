@@ -34,7 +34,7 @@ export class SignDto {
   @IsDefined()
   @IsNumber()
   @IsNotEmpty()
-  timestamp: string;
+  timestamp: number;
 
   @ApiProperty({
     example: {

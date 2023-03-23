@@ -1,5 +1,11 @@
-import { Body, Controller, Post, UseGuards } from '@nestjs/common';
-import { ApiHeader, ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
+import { Body, Controller, Post, Req, UseGuards } from '@nestjs/common';
+import {
+  ApiHeader,
+  ApiOperation,
+  ApiQuery,
+  ApiResponse,
+  ApiTags,
+} from '@nestjs/swagger';
 import { MerchantGuard } from 'src/core/merchants/guards/merchant.guard';
 import { PaymentByMomoParam } from 'src/core/payments/dto/create-payment.dto';
 import { BASE_ERROR } from 'src/shared/error/base.error';
@@ -10,6 +16,14 @@ import { BankingPaymentService } from './payment.service';
 export class BankingPaymentController {
   constructor(private readonly cliPaymentService: BankingPaymentService) {}
 
+  @ApiQuery({
+    example: 'iLrxICy8PsCCFDgWFhvfQIhyWHBLxgLM',
+    name: 'merchantCode',
+  })
+  @ApiQuery({
+    example: 11312313,
+    name: 'timestamp',
+  })
   @Post('momo')
   @UseGuards(MerchantGuard)
   @ApiHeader({ name: 'Authorization', description: 'Signature' })
@@ -20,6 +34,15 @@ export class BankingPaymentController {
   async paymentByMomo(@Body() body: PaymentByMomoParam) {
     try {
       return await this.cliPaymentService.paymentByMomo(body);
+    } catch (error) {
+      return { ...BASE_ERROR[0] };
+    }
+  }
+
+  @Post('momoPayment/callback')
+  async momoPaymentCallback(@Req() req) {
+    try {
+      return await this.cliPaymentService.momoPaymentCallback(req);
     } catch (error) {
       return { ...BASE_ERROR[0] };
     }

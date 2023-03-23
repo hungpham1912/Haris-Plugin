@@ -1,6 +1,10 @@
 import { getConfig } from '../lib/config/config.lib';
 
 export const ENV_CONFIG = {
+  momo: {
+    baseUrl: getConfig('momo.baseUrl'),
+    callBackUrl: getConfig('momo.callBackUrl'),
+  },
   database: {
     harisPrd: {
       host: getConfig('database.harisPrd.host'),
