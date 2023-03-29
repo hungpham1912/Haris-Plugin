@@ -8,6 +8,7 @@ import { OperatorModule } from './module/operator/operator.module';
 import { PluginModule } from './module/plugin/plugin.module';
 import { ENV_CONFIG } from './shared/constants/env.constant';
 import { ENTITIES } from './database/database.config';
+import { OtpModule } from './core/otp/otp.module';
 
 @Module({
   imports: [
@@ -51,6 +52,7 @@ import { ENTITIES } from './database/database.config';
         module: BankingModule,
       },
     ]),
+    OtpModule,
   ],
   providers: [...customProvider],
 })

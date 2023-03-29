@@ -6,6 +6,7 @@ import { Log } from 'src/core/logs/entities/log.entity';
 import { Manager } from 'src/core/managers/entities/manager.entity';
 import { Merchant } from 'src/core/merchants/entities/merchant.entity';
 import { MerchantInfo } from 'src/core/merchant_info/entities/merchant_info.entity';
+import { Otp } from 'src/core/otp/entities/otp.entity';
 import { Talked } from 'src/core/talkeds/entities/talked.entity';
 import { User } from 'src/core/users/entities/user.entity';
 import { UserConversation } from 'src/core/user_conversation/entities/user_conversation.entity';
@@ -23,6 +24,7 @@ export const ENTITIES = [
   MerchantInfo,
   Gateway,
   Log,
+  Otp,
 ];
 
 export const SOURCE_CONFIG: DataSourceOptions = {

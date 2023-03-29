@@ -20,6 +20,9 @@ export const ENV_CONFIG = {
     port: getConfig('system.port') || 3000,
     apiVersion: getConfig('system.api_version'),
     characters: getConfig('system.characters'),
+    digitals: getConfig('system.digitals'),
+    expiryOtp: getConfig('system.expiryOtp'),
+    numberCharactersOtp: getConfig('system.numberCharactersOtp'),
   },
   source: {
     user: {
