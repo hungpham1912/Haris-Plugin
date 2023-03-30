@@ -37,7 +37,10 @@ export class PluginAuthService {
         ...key,
       });
 
-      const otp = await this.otpService.create(OtpType.EMAIL, body.email);
+      const otp = await this.otpService.create({
+        type: OtpType.EMAIL,
+        email: body.email,
+      });
 
       this.mailService.sendMailFormSystem({
         subject: MERCHANT_CONSTANT.mail.register,

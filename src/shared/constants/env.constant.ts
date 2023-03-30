@@ -20,7 +20,7 @@ export const ENV_CONFIG = {
     port: getConfig('system.port') || 3000,
     apiVersion: getConfig('system.api_version'),
     characters: getConfig('system.characters'),
-    digitals: getConfig('system.digitals'),
+    digitals: '0123456789',
     expiryOtp: getConfig('system.expiryOtp'),
     numberCharactersOtp: getConfig('system.numberCharactersOtp'),
     mail: {

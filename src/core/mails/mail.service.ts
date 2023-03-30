@@ -20,7 +20,7 @@ export class MailService {
 
       await transporter.sendMail(mailOptions, function (error) {
         if (error) {
-          Logger.debug('Send mail failed', error);
+          Logger.error('🚀 ~ file: mail.service.ts:31 ~', error);
         } else {
           console.log('Send mail success');
         }
