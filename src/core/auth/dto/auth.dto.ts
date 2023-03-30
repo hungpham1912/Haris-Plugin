@@ -149,6 +149,16 @@ export class RegisterMerchantDto {
   @MinLength(6)
   @MaxLength(16)
   password: string;
+
+  @ApiProperty({
+    description: 'Name',
+    example: '',
+  })
+  @IsDefined()
+  @IsString()
+  @IsNotEmpty()
+  @MaxLength(50)
+  name: string;
 }
 
 export class CreateMerchantUserParam extends RegisterMerchantUserDto {

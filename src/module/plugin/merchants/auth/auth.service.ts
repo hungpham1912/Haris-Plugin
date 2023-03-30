@@ -15,6 +15,7 @@ import { OtpType } from 'src/core/otp/entities/otp.entity';
 import { OtpService } from 'src/core/otp/otp.service';
 import { generateKey, genSignature } from 'src/shared/helper/system.helper';
 import { MoreThanOrEqual } from 'typeorm';
+import { getTemplateInfoMerchant } from 'views/mail-infor';
 import { getTemplateRegisterMerchant } from 'views/mail-register';
 
 @Injectable()
@@ -41,6 +42,7 @@ export class PluginMerchantAuthService {
         merchantCode,
         email: body.email,
         password,
+        name: body.name,
       });
       this.merchantInfoService.create({
         merchantId: merchant.id,
@@ -54,10 +56,10 @@ export class PluginMerchantAuthService {
       this.mailService.sendMailFormSystem({
         subject: MERCHANT_CONSTANT.mail.register,
         to: otp.email,
-        html: await getTemplateRegisterMerchant(merchant.email, otp.otp),
+        html: await getTemplateRegisterMerchant(merchant.name, otp.otp),
       });
 
-      return true;
+      return merchant;
     } catch (error) {
       console.log('🚀 ~ file: auth.service.ts:17 ~ :', error);
       throw error;
@@ -99,10 +101,19 @@ export class PluginMerchantAuthService {
 
       await this.merchantsService.update(merchant.id, { isAccepted: true });
 
+      const info = await this.merchantInfoService.findOne({
+        merchantId: merchant.id,
+      });
+
       this.mailService.sendMailFormSystem({
         subject: MERCHANT_CONSTANT.mail.sendKey,
         to: merchant.email,
         text: otp.otp,
+        html: await getTemplateInfoMerchant({
+          name: merchant.name,
+          privateKey: info.privateKey,
+          publicKey: info.publicKey,
+        }),
       });
 
       return {

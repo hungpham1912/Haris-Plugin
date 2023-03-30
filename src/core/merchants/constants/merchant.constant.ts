@@ -8,6 +8,6 @@ export const MERCHANT_CONSTANT = {
   },
   mail: {
     register: '[HARIS] Otp for register merchant',
-    sendKey: '[HARIS] Information for cipher',
+    sendKey: '[HARIS] Information for merchant',
   },
 };
