@@ -23,6 +23,12 @@ export const ENV_CONFIG = {
     digitals: getConfig('system.digitals'),
     expiryOtp: getConfig('system.expiryOtp'),
     numberCharactersOtp: getConfig('system.numberCharactersOtp'),
+    mail: {
+      sendDefault: {
+        mail: getConfig('system.mail.sendDefault.mail'),
+        pass: getConfig('system.mail.sendDefault.pass'),
+      },
+    },
   },
   source: {
     user: {

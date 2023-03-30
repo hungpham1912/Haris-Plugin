@@ -14,13 +14,19 @@ export class OtpService {
   ) {}
   async create(type: string, phone?: string, email?: string) {
     try {
+      const expiredAt = new Date();
+      expiredAt.setMinutes(
+        expiredAt.getMinutes() + ENV_CONFIG.system.expiryOtp,
+      );
+
       const dto: CreateOtpDto = {
         type,
-        expiry: Date.now() + ENV_CONFIG.system.expiryOtp,
+        expiry: expiredAt,
         email,
         phone,
         otp: generateOTP(ENV_CONFIG.system.numberCharactersOtp),
       };
+
       return await this.otpRepository.save(dto);
     } catch (error) {
       throw error;

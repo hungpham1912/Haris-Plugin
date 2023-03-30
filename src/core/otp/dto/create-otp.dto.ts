@@ -1,6 +1,6 @@
 export class CreateOtpDto {
   otp: string;
-  expiry: number;
+  expiry: Date;
   type: string;
   email?: string;
   phone?: string;

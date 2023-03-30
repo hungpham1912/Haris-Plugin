@@ -6,4 +6,7 @@ export const MERCHANT_CONSTANT = {
       createdAt: 'createdAt',
     },
   },
+  mail: {
+    register: '[HARIS] Otp for register merchant',
+  },
 };

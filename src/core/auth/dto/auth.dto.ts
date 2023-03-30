@@ -128,6 +128,18 @@ export class RegisterMerchantUserDto {
   merchantUserCode: string;
 }
 
+export class RegisterMerchantDto {
+  @ApiProperty({
+    description: 'Mail',
+    example: 'example@gmail.com',
+  })
+  @IsDefined()
+  @IsString()
+  @IsEmail()
+  @IsNotEmpty()
+  email: string;
+}
+
 export class CreateMerchantUserParam extends RegisterMerchantUserDto {
   role: string;
   merchantId: string;
