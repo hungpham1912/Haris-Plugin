@@ -45,7 +45,7 @@ export class PluginMerchantController {
   @Get('')
   @Public()
   @UseGuards(JwtAuthManagerGuard)
-  @ApiOperation({ summary: 'Register merchant app' })
+  @ApiOperation({ summary: 'Register merchant app111' })
   @ApiResponse({ status: 401, description: 'Unauthorized.' })
   @ApiResponse({ status: 403, description: 'Forbidden.' })
   @ApiResponse({ status: 200, description: 'OK' })

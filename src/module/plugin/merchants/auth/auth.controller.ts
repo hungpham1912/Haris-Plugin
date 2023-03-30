@@ -8,12 +8,12 @@ import { VerifyOtpRegisterMerchant } from 'src/core/auth/dto/verify.dto';
 import { SignDto } from 'src/core/merchants/dto/auth-merchant.dto';
 import { BASE_ERROR } from 'src/shared/error/base.error';
 import { Public } from 'src/wanders/decorators/public.decorator';
-import { PluginAuthService } from './auth.service';
+import { PluginMerchantAuthService } from './auth.service';
 
 @ApiTags('Authentication')
 @Controller('')
 export class PluginAuthController {
-  constructor(private readonly pluginAuthService: PluginAuthService) {}
+  constructor(private readonly pluginAuthService: PluginMerchantAuthService) {}
 
   @Post('sign')
   @Public()

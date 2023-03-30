@@ -8,14 +8,14 @@ export class MailService {
   async sendMailFormSystem(mailOptions: MailOptions) {
     try {
       const { mail, pass } = ENV_CONFIG.system.mail.sendDefault;
-      const transporter = nodemailer.createTransport({
+
+      const transporter = await nodemailer.createTransport({
         service: 'gmail',
         auth: {
           user: mail,
           pass: pass,
         },
       });
-
       mailOptions.from = mail;
 
       await transporter.sendMail(mailOptions, function (error) {

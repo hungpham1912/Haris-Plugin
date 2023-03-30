@@ -15,9 +15,10 @@ import { OtpType } from 'src/core/otp/entities/otp.entity';
 import { OtpService } from 'src/core/otp/otp.service';
 import { generateKey, genSignature } from 'src/shared/helper/system.helper';
 import { MoreThanOrEqual } from 'typeorm';
+import { getTemplateRegisterMerchant } from 'views/mail-register';
 
 @Injectable()
-export class PluginAuthService {
+export class PluginMerchantAuthService {
   constructor(
     private readonly merchantsService: MerchantsService,
     private readonly merchantInfoService: MerchantInfoService,
@@ -50,14 +51,13 @@ export class PluginAuthService {
         type: OtpType.EMAIL,
         email: body.email,
       });
-
       this.mailService.sendMailFormSystem({
         subject: MERCHANT_CONSTANT.mail.register,
         to: otp.email,
-        text: otp.otp,
+        html: await getTemplateRegisterMerchant(merchant.email, otp.otp),
       });
 
-      return merchant;
+      return true;
     } catch (error) {
       console.log('🚀 ~ file: auth.service.ts:17 ~ :', error);
       throw error;
@@ -98,6 +98,12 @@ export class PluginAuthService {
       }
 
       await this.merchantsService.update(merchant.id, { isAccepted: true });
+
+      this.mailService.sendMailFormSystem({
+        subject: MERCHANT_CONSTANT.mail.sendKey,
+        to: merchant.email,
+        text: otp.otp,
+      });
 
       return {
         statusCode: HttpStatus.OK,
