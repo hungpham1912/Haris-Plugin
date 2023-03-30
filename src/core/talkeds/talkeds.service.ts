@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
+import { FindOptionsWhere, Repository } from 'typeorm';
 import { Conversation } from '../conversations/entities/conversation.entity';
 import { User } from '../users/entities/user.entity';
 import { CreateTalkedDto } from './dto/create-talked.dto';
@@ -34,7 +34,7 @@ export class TalkedService {
     }
   }
 
-  async findOne(query: any) {
+  async findOne(query: FindOptionsWhere<Talked>) {
     try {
       return await this.talkedRepository.findOne({ where: query });
     } catch (error) {

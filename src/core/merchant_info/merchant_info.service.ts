@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
+import { FindOptionsWhere, Repository } from 'typeorm';
 import { CreateMerchantInfoDto } from './dto/create-merchant_info.dto';
 import { MerchantInfo } from './entities/merchant_info.entity';
 
@@ -18,7 +18,7 @@ export class MerchantInfoService {
     }
   }
 
-  async findOne(query: any) {
+  async findOne(query: FindOptionsWhere<MerchantInfo>) {
     try {
       return await this.merchantInfoRepository.findOne({ where: query });
     } catch (error) {

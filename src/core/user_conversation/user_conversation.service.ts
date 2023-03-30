@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { PaginateQuery } from 'nestjs-paginate';
 import { Operator, PaginateBuilder } from 'src/shared/lib/paginate/condition';
-import { Repository } from 'typeorm';
+import { FindOptionsWhere, Repository } from 'typeorm';
 import { ConversationFilter } from '../conversations/models/conversation.model';
 import { User } from '../users/entities/user.entity';
 import { USER_CONVERSATION_CONSTANT } from './constants/user_conversation.constant';
@@ -53,7 +53,7 @@ export class UserConversationService {
     }
   }
 
-  async findOne(query: any) {
+  async findOne(query: FindOptionsWhere<UserConversation>) {
     try {
       return await this.userConversationRepository.findOne({ where: query });
     } catch (error) {

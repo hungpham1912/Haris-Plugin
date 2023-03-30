@@ -1,5 +1,7 @@
 import { Module } from '@nestjs/common';
+import { JwtService } from '@nestjs/jwt';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { AuthService } from 'src/core/auth/auth.service';
 import { MailModule } from 'src/core/mails/mail.module';
 import { Merchant } from 'src/core/merchants/entities/merchant.entity';
 import { MerchantsService } from 'src/core/merchants/merchants.service';
@@ -18,16 +20,12 @@ import { PluginAuthService } from './auth.service';
     OtpModule,
   ],
   providers: [
-    UsersModule,
     MerchantsService,
     PluginAuthService,
     MerchantInfoService,
+    AuthService,
+    JwtService,
   ],
-  exports: [
-    UsersModule,
-    MerchantsService,
-    PluginAuthService,
-    MerchantInfoService,
-  ],
+  exports: [MerchantsService, PluginAuthService, MerchantInfoService],
 })
 export class PluginAuthModule {}

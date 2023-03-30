@@ -38,7 +38,6 @@ export class CliAuthService implements AuthInterface {
 
       const payload: Payload = {
         id: user.id,
-        sub: user.id,
       };
       const accessToken = await this.authService.generateJwtToken(payload);
       const data: ResponseAuthUser = { ...user, accessToken };
@@ -70,7 +69,6 @@ export class CliAuthService implements AuthInterface {
       const user = await this.userService.create(body);
       const payload: Payload = {
         id: user.id,
-        sub: user.id,
       };
       const accessToken = await this.authService.generateJwtToken(payload);
       const data: ResponseAuthUser = { ...user, accessToken };

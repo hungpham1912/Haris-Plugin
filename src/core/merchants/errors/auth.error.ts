@@ -1,5 +1,7 @@
 export const MERCHANT_AUTH_ERROR = {
   1: 'Server can not create merchant code',
+  2: `Can't found merchant with param {merchantId} `,
+  3: `Verify otp failed, otp invalid or expired `,
 };
 export const MERCHANT_GUARD_ERROR = {
   0: 'Request invalid',
@@ -10,7 +12,7 @@ export const MERCHANT_GUARD_ERROR = {
   5: 'Timestamp must is number',
   6: 'Timestamp not found',
   7: 'No merchant found corresponding to merchant code',
-  8: ' Signature not matching',
+  8: 'Signature not matching',
 };
 export const SIGN_ERROR = {
   1: 'Merchant Code not found',

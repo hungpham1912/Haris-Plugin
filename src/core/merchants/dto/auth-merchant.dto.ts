@@ -10,7 +10,7 @@ import {
 } from 'class-validator';
 import { PaymentByMomoParam } from 'src/core/payments/dto/create-payment.dto';
 import {
-  MerchantICodeExistConstraint,
+  MerchantNotExistConstraint,
   SignBodyConstraint,
 } from '../constraints/auth-merchant.contraints';
 import { SIGN_ERROR } from '../errors/auth.error';
@@ -25,7 +25,7 @@ export class SignDto {
   @MinLength(32)
   @MaxLength(32)
   @IsNotEmpty()
-  @Validate(MerchantICodeExistConstraint, { message: SIGN_ERROR[1] })
+  @Validate(MerchantNotExistConstraint, { message: SIGN_ERROR[1] })
   merchantCode: string;
 
   @ApiProperty({

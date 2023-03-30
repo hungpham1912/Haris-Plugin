@@ -29,5 +29,4 @@ export class ResponseAuthUser extends User {
 
 export class Payload {
   id: string;
-  sub: string;
 }

@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { ENV_CONFIG } from 'src/shared/constants/env.constant';
-import { Repository } from 'typeorm';
+import { FindOptionsWhere, Repository } from 'typeorm';
 import { CreateOtpDto, CreateOtpParam } from './dto/create-otp.dto';
 import { Otp } from './entities/otp.entity';
 import { generateOTP } from './otp.helper';
@@ -29,5 +29,10 @@ export class OtpService {
     } catch (error) {
       throw error;
     }
+  }
+  async findOne(query: FindOptionsWhere<Otp>) {
+    try {
+      return await this.otpRepository.findOne({ where: query });
+    } catch (error) {}
   }
 }

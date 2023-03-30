@@ -11,4 +11,7 @@ export class Merchant extends BaseEntity {
 
   @Column({ nullable: false })
   email: string;
+
+  @Column({ nullable: false })
+  password: string;
 }

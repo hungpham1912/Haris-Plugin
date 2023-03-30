@@ -3,7 +3,9 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { PaginateQuery } from 'nestjs-paginate';
 import { makeId } from 'src/shared/helper/system.helper';
 import { Operator, PaginateBuilder } from 'src/shared/lib/paginate/condition';
-import { Repository } from 'typeorm';
+import { FindOptionsWhere, Repository } from 'typeorm';
+import { QueryDeepPartialEntity } from 'typeorm/query-builder/QueryPartialEntity';
+
 import { MERCHANT_CONSTANT } from './constants/merchant.constant';
 import { CreateMerchantParam } from './dto/create-merchant.dto';
 import { Merchant } from './entities/merchant.entity';
@@ -25,7 +27,7 @@ export class MerchantsService {
     }
   }
 
-  async countByQuery(query: any) {
+  async countByQuery(query: FindOptionsWhere<Merchant>) {
     try {
       return await this.merchantRepository.count({ where: query });
     } catch (error) {
@@ -33,7 +35,15 @@ export class MerchantsService {
     }
   }
 
-  async findOne(query: any) {
+  async update(id: string, query: QueryDeepPartialEntity<Merchant>) {
+    try {
+      return await this.merchantRepository.update(id, query);
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  async findOne(query: FindOptionsWhere<Merchant>) {
     try {
       return await this.merchantRepository.findOne({ where: query });
     } catch (error) {

@@ -36,7 +36,6 @@ export class OpeAuthService implements AuthInterface {
         };
       const payload: Payload = {
         id: manager.id,
-        sub: manager.id,
       };
       const accessToken = await this.authService.generateJwtToken(payload);
       const data: ResponseAuthManager = { ...manager, accessToken };
@@ -71,7 +70,6 @@ export class OpeAuthService implements AuthInterface {
       const manager = await this.managerService.create(body);
       const payload: Payload = {
         id: manager.id,
-        sub: manager.id,
       };
       const accessToken = await this.authService.generateJwtToken(payload);
       const data: ResponseAuthManager = { ...manager, accessToken };
