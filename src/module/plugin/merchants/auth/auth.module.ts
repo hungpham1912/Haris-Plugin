@@ -10,7 +10,8 @@ import { MerchantInfoService } from 'src/core/merchant_info/merchant_info.servic
 import { Otp } from 'src/core/otp/entities/otp.entity';
 import { OtpModule } from 'src/core/otp/otp.module';
 import { UsersModule } from 'src/core/users/users.module';
-import { PluginMerchantAuthService } from './auth.service';
+import { PluginMerchantAuthService } from './services/auth.service';
+import { PluginMerchantHelpService } from './services/help.service';
 
 @Module({
   imports: [
@@ -22,10 +23,11 @@ import { PluginMerchantAuthService } from './auth.service';
   providers: [
     MerchantsService,
     PluginMerchantAuthService,
+    PluginMerchantHelpService,
     MerchantInfoService,
     AuthService,
     JwtService,
   ],
-  exports: [MerchantsService, PluginMerchantAuthService, MerchantInfoService],
+  exports: [PluginMerchantAuthService, PluginMerchantHelpService],
 })
 export class PluginAuthModule {}

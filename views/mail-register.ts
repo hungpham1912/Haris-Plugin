@@ -1,4 +1,4 @@
-export async function getTemplateRegisterMerchant(name: string, code: string) {
+export async function getTemplateOtp(name: string, code: string) {
   return `<!DOCTYPE html>
     <html xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office" lang="en">
     
@@ -119,7 +119,7 @@ export async function getTemplateRegisterMerchant(name: string, code: string) {
                                                                 <td class="pad" style="padding-bottom:10px;padding-left:10px;padding-right:10px;padding-top:5px;">
                                                                     <div style="font-family: Georgia, 'Times New Roman', serif">
                                                                         <div class style="font-size: 12px; font-family: 'Droid Serif', Georgia, Times, 'Times New Roman', serif; mso-line-height-alt: 24px; color: #555555; line-height: 2;">
-                                                                            <p style="margin: 0; font-size: 14px; text-align: center; mso-line-height-alt: 52px;"><span style="font-size:26px;"><strong><span style="font-size:26px;">Verify for register merchant</span></strong></span></p>
+                                                                            <p style="margin: 0; font-size: 14px; text-align: center; mso-line-height-alt: 52px;"><span style="font-size:26px;"><strong><span style="font-size:26px;">Verify Otp </span></strong></span></p>
                                                                         </div>
                                                                     </div>
                                                                 </td>
@@ -131,7 +131,7 @@ export async function getTemplateRegisterMerchant(name: string, code: string) {
                                                                     <div style="font-family: sans-serif">
                                                                         <div class style="font-size: 12px; font-family: 'Droid Serif', Georgia, Times, 'Times New Roman', serif; mso-line-height-alt: 24px; color: #555555; line-height: 2;">
                                                                             <p style="margin: 0; font-size: 13px; mso-line-height-alt: 26px;"><span style="font-size:13px;">Hey ${name}!</span></p>
-                                                                            <p style="margin: 0; font-size: 13px; mso-line-height-alt: 26px;"><span style="font-size:13px;">Attempts to register require further verification for security reasons. To complete the login, enter the verification code on the device.</span></p>
+                                                                            <p style="margin: 0; font-size: 13px; mso-line-height-alt: 26px;"><span style="font-size:13px;">To complete the active, enter the verification code on the device.</span></p>
                                                                             <p style="margin: 0; font-size: 13px; text-align: left; mso-line-height-alt: 26px;"><span style="color:#0b0505;"><strong><span style="font-size:16px;">Verification code: <span style="color:#e51818;">${code}</span></span></strong></span><br>Thanks,<br>The GitHub Team</p>
                                                                         </div>
                                                                     </div>

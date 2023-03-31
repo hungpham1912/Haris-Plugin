@@ -138,7 +138,7 @@ export async function getTemplateInfoMerchant(data: {
                                                             <tr>
                                                                 <td class="pad">
                                                                     <div style="color:#201f42;direction:ltr;font-family:Inter, sans-serif;font-size:16px;font-weight:400;letter-spacing:0px;line-height:180%;text-align:center;mso-line-height-alt:28.8px;">
-                                                                        <p style="margin: 0; margin-bottom: 0px;">Hey&nbsp;<a href="mailto:${data.name}" target="_blank" style="text-decoration: underline; color: #b15b5b;" rel="noopener">phamthanh.hung.work@gmail.com</a>!</p>
+                                                                        <p style="margin: 0; margin-bottom: 0px;">Hey&nbsp;<a target="_blank" style="text-decoration: underline; color: #b15b5b;" rel="noopener">${data.name}</a>!</p>
                                                                         <p style="margin: 0;">Here is the information needed for your third application</p>
                                                                     </div>
                                                                 </td>

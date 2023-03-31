@@ -8,10 +8,10 @@ import { VerifyOtpRegisterMerchant } from 'src/core/auth/dto/verify.dto';
 import { SignDto } from 'src/core/merchants/dto/auth-merchant.dto';
 import { BASE_ERROR } from 'src/shared/error/base.error';
 import { Public } from 'src/wanders/decorators/public.decorator';
-import { PluginMerchantAuthService } from './auth.service';
+import { PluginMerchantAuthService } from '../services/auth.service';
 
 @ApiTags('Authentication')
-@Controller('')
+@Controller('merchant/auth')
 export class PluginAuthController {
   constructor(private readonly pluginAuthService: PluginMerchantAuthService) {}
 
@@ -29,7 +29,7 @@ export class PluginAuthController {
     }
   }
 
-  @Post('merchantRegister')
+  @Post('register')
   @Public()
   @ApiOperation({ summary: 'Register merchant app' })
   @ApiResponse({ status: 401, description: 'Unauthorized.' })
@@ -43,7 +43,21 @@ export class PluginAuthController {
     }
   }
 
-  @Post('merchantRegister/verifyOtp')
+  @Post('login')
+  @Public()
+  @ApiOperation({ summary: 'Login merchant app' })
+  @ApiResponse({ status: 401, description: 'Unauthorized.' })
+  @ApiResponse({ status: 403, description: 'Forbidden.' })
+  @ApiResponse({ status: 200, description: 'OK' })
+  async login(@Body() body: RegisterMerchantDto) {
+    try {
+      return await this.pluginAuthService.merchantRegister(body);
+    } catch (error) {
+      return BASE_ERROR[0];
+    }
+  }
+
+  @Post('/verifyRegister')
   @Public()
   @ApiOperation({ summary: 'Verify otp for register merchant app' })
   @ApiResponse({ status: 401, description: 'Unauthorized.' })

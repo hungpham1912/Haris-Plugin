@@ -16,7 +16,7 @@ import { OtpService } from 'src/core/otp/otp.service';
 import { generateKey, genSignature } from 'src/shared/helper/system.helper';
 import { MoreThanOrEqual } from 'typeorm';
 import { getTemplateInfoMerchant } from 'views/mail-infor';
-import { getTemplateRegisterMerchant } from 'views/mail-register';
+import { getTemplateOtp } from 'views/mail-register';
 
 @Injectable()
 export class PluginMerchantAuthService {
@@ -56,7 +56,7 @@ export class PluginMerchantAuthService {
       this.mailService.sendMailFormSystem({
         subject: MERCHANT_CONSTANT.mail.register,
         to: otp.email,
-        html: await getTemplateRegisterMerchant(merchant.name, otp.otp),
+        html: await getTemplateOtp(merchant.name, otp.otp),
       });
 
       return merchant;
