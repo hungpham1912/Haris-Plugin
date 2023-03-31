@@ -2,6 +2,8 @@ export const MERCHANT_AUTH_ERROR = {
   1: 'Server can not create merchant code',
   2: `Can't found merchant with param {merchantId} `,
   3: `Verify otp failed, otp invalid or expired `,
+  4: `Can not found email`,
+  5: `Password failed`,
 };
 export const MERCHANT_GUARD_ERROR = {
   0: 'Request invalid',

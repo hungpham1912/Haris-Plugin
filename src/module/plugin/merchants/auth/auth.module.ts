@@ -5,6 +5,7 @@ import { AuthService } from 'src/core/auth/auth.service';
 import { MailModule } from 'src/core/mails/mail.module';
 import { Merchant } from 'src/core/merchants/entities/merchant.entity';
 import { MerchantsService } from 'src/core/merchants/merchants.service';
+import { JwtMerchantStrategy } from 'src/core/merchants/strategy/jwt.strategy';
 import { MerchantInfo } from 'src/core/merchant_info/entities/merchant_info.entity';
 import { MerchantInfoService } from 'src/core/merchant_info/merchant_info.service';
 import { Otp } from 'src/core/otp/entities/otp.entity';
@@ -27,6 +28,7 @@ import { PluginMerchantHelpService } from './services/help.service';
     MerchantInfoService,
     AuthService,
     JwtService,
+    JwtMerchantStrategy,
   ],
   exports: [PluginMerchantAuthService, PluginMerchantHelpService],
 })

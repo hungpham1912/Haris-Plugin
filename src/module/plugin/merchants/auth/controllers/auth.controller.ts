@@ -1,6 +1,7 @@
 import { Body, Controller, Post } from '@nestjs/common';
 import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 import {
+  LoginMerchantDto,
   RegisterMerchantDto,
   RegisterMerchantUserDto,
 } from 'src/core/auth/dto/auth.dto';
@@ -49,9 +50,9 @@ export class PluginAuthController {
   @ApiResponse({ status: 401, description: 'Unauthorized.' })
   @ApiResponse({ status: 403, description: 'Forbidden.' })
   @ApiResponse({ status: 200, description: 'OK' })
-  async login(@Body() body: RegisterMerchantDto) {
+  async login(@Body() body: LoginMerchantDto) {
     try {
-      return await this.pluginAuthService.merchantRegister(body);
+      return await this.pluginAuthService.login(body);
     } catch (error) {
       return BASE_ERROR[0];
     }

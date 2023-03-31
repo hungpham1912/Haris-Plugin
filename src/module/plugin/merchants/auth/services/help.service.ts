@@ -1,5 +1,5 @@
 import { HttpStatus, Injectable } from '@nestjs/common';
-import { VerifyOtpMerchant } from 'src/core/auth/dto/verify.dto';
+import { VerifyForgotKeyMerchant } from 'src/core/auth/dto/verify.dto';
 import { MailService } from 'src/core/mails/mail.service';
 import { MERCHANT_CONSTANT } from 'src/core/merchants/constants/merchant.constant';
 import { Merchant } from 'src/core/merchants/entities/merchant.entity';
@@ -38,7 +38,7 @@ export class PluginMerchantHelpService {
     }
   }
 
-  async VerifyForgotKey(body: VerifyOtpMerchant, merchant: Merchant) {
+  async verifyForgotKey(body: VerifyForgotKeyMerchant, merchant: Merchant) {
     try {
       const otp = await this.otpService.findOne({
         email: merchant.email,

@@ -34,3 +34,16 @@ export class VerifyOtpMerchant {
   @MaxLength(4)
   otp: string;
 }
+
+export class VerifyForgotKeyMerchant {
+  @ApiProperty({
+    description: 'Otp',
+    example: '1111',
+  })
+  @IsDefined()
+  @IsString()
+  @IsNotEmpty()
+  @MinLength(4)
+  @MaxLength(4)
+  otp: string;
+}

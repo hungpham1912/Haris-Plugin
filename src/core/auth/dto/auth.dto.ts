@@ -8,7 +8,10 @@ import {
   IsString,
   MaxLength,
   MinLength,
+  Validate,
 } from 'class-validator';
+import { MerchantNotExistConstraint } from 'src/core/merchants/constraints/auth-merchant.contraints';
+import { MERCHANT_AUTH_ERROR } from 'src/core/merchants/errors/auth.error';
 
 export class LoginDto {
   @ApiProperty({
@@ -159,6 +162,30 @@ export class RegisterMerchantDto {
   @IsNotEmpty()
   @MaxLength(50)
   name: string;
+}
+
+export class LoginMerchantDto {
+  @ApiProperty({
+    description: 'Mail',
+    example: 'example@gmail.com',
+  })
+  @IsDefined()
+  @IsString()
+  @IsEmail()
+  @IsNotEmpty()
+  @Validate(MerchantNotExistConstraint, { message: MERCHANT_AUTH_ERROR[4] })
+  email: string;
+
+  @ApiProperty({
+    description: 'Password',
+    example: '1234567',
+  })
+  @IsDefined()
+  @IsString()
+  @IsNotEmpty()
+  @MinLength(6)
+  @MaxLength(16)
+  password: string;
 }
 
 export class CreateMerchantUserParam extends RegisterMerchantUserDto {

@@ -11,6 +11,10 @@ export enum AuthUserStrategy {
   BASIC = 'basic_user',
   JWT = 'jwt_user',
 }
+
+export enum AuthMerchantStrategy {
+  JWT = 'jwt_merchant',
+}
 export class ResponseAuthManager extends Manager {
   @ApiProperty({
     example:

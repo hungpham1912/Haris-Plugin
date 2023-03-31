@@ -1,6 +1,7 @@
 import { HttpStatus, Injectable } from '@nestjs/common';
 import { AuthService } from 'src/core/auth/auth.service';
 import {
+  LoginMerchantDto,
   RegisterMerchantDto,
   RegisterMerchantUserDto,
 } from 'src/core/auth/dto/auth.dto';
@@ -126,5 +127,19 @@ export class PluginMerchantAuthService {
       console.log('🚀 ~ file: auth.service.ts:88 ~  ~ error:', error);
       throw error;
     }
+  }
+
+  async login(body: LoginMerchantDto) {
+    const merchant = await this.merchantsService.findOne({ email: body.email });
+    const { password } = merchant;
+    if (!(await this.authService.checkPassword(body.password, password)))
+      return {
+        statusCode: HttpStatus.UNAUTHORIZED,
+        message: MERCHANT_AUTH_ERROR[5],
+      };
+    return {
+      id: merchant.id,
+      accessCode: await this.authService.generateJwtToken({ id: merchant.id }),
+    };
   }
 }
