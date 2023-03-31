@@ -132,7 +132,7 @@ export async function getTemplateOtp(name: string, code: string) {
                                                                         <div class style="font-size: 12px; font-family: 'Droid Serif', Georgia, Times, 'Times New Roman', serif; mso-line-height-alt: 24px; color: #555555; line-height: 2;">
                                                                             <p style="margin: 0; font-size: 13px; mso-line-height-alt: 26px;"><span style="font-size:13px;">Hey ${name}!</span></p>
                                                                             <p style="margin: 0; font-size: 13px; mso-line-height-alt: 26px;"><span style="font-size:13px;">To complete the active, enter the verification code on the device.</span></p>
-                                                                            <p style="margin: 0; font-size: 13px; text-align: left; mso-line-height-alt: 26px;"><span style="color:#0b0505;"><strong><span style="font-size:16px;">Verification code: <span style="color:#e51818;">${code}</span></span></strong></span><br>Thanks,<br>The GitHub Team</p>
+                                                                            <p style="margin: 0; font-size: 13px; text-align: left; mso-line-height-alt: 26px;"><span style="color:#0b0505;"><strong><span style="font-size:16px;">Verification code: <span style="color:#e51818;">${code}</span></span></strong></span><br>Thanks,<br>Form Haris</p>
                                                                         </div>
                                                                     </div>
                                                                 </td>

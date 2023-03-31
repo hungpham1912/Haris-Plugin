@@ -17,7 +17,7 @@ import { OtpService } from 'src/core/otp/otp.service';
 import { generateKey, genSignature } from 'src/shared/helper/system.helper';
 import { MoreThanOrEqual } from 'typeorm';
 import { getTemplateInfoMerchant } from 'views/mail-infor';
-import { getTemplateOtp } from 'views/mail-register';
+import { getTemplateOtp } from 'views/mail-otp';
 
 @Injectable()
 export class PluginMerchantAuthService {

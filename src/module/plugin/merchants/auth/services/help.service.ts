@@ -9,7 +9,7 @@ import { OtpType } from 'src/core/otp/entities/otp.entity';
 import { OtpService } from 'src/core/otp/otp.service';
 import { MoreThanOrEqual } from 'typeorm';
 import { getTemplateInfoMerchant } from 'views/mail-infor';
-import { getTemplateOtp } from 'views/mail-register';
+import { getTemplateOtp } from 'views/mail-otp';
 
 @Injectable()
 export class PluginMerchantHelpService {
