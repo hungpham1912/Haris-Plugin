@@ -11,7 +11,7 @@ import {
 import { MerchantIdNotExistConstraint } from 'src/core/merchants/constraints/auth-merchant.contraints';
 import { MERCHANT_AUTH_ERROR } from 'src/core/merchants/errors/auth.error';
 
-export class VerifyOtpRegisterMerchant {
+export class VerifyOtpMerchant {
   @ApiProperty({
     description: 'Merchant Id',
     example: '',

@@ -4,7 +4,7 @@ import {
   RegisterMerchantDto,
   RegisterMerchantUserDto,
 } from 'src/core/auth/dto/auth.dto';
-import { VerifyOtpRegisterMerchant } from 'src/core/auth/dto/verify.dto';
+import { VerifyOtpMerchant } from 'src/core/auth/dto/verify.dto';
 import { MailService } from 'src/core/mails/mail.service';
 import { MERCHANT_CONSTANT } from 'src/core/merchants/constants/merchant.constant';
 import { SignDto } from 'src/core/merchants/dto/auth-merchant.dto';
@@ -80,7 +80,7 @@ export class PluginMerchantAuthService {
     }
   }
 
-  async verifyRegisterMerchant(body: VerifyOtpRegisterMerchant) {
+  async verifyRegisterMerchant(body: VerifyOtpMerchant) {
     try {
       const merchant = await this.merchantsService.findOne({
         id: body.merchantId,

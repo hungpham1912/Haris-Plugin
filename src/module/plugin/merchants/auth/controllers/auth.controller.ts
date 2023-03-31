@@ -4,7 +4,7 @@ import {
   RegisterMerchantDto,
   RegisterMerchantUserDto,
 } from 'src/core/auth/dto/auth.dto';
-import { VerifyOtpRegisterMerchant } from 'src/core/auth/dto/verify.dto';
+import { VerifyOtpMerchant } from 'src/core/auth/dto/verify.dto';
 import { SignDto } from 'src/core/merchants/dto/auth-merchant.dto';
 import { BASE_ERROR } from 'src/shared/error/base.error';
 import { Public } from 'src/wanders/decorators/public.decorator';
@@ -63,7 +63,7 @@ export class PluginAuthController {
   @ApiResponse({ status: 401, description: 'Unauthorized.' })
   @ApiResponse({ status: 403, description: 'Forbidden.' })
   @ApiResponse({ status: 200, description: 'OK' })
-  async verifyOtp(@Body() body: VerifyOtpRegisterMerchant) {
+  async verifyOtp(@Body() body: VerifyOtpMerchant) {
     try {
       return await this.pluginAuthService.verifyRegisterMerchant(body);
     } catch (error) {
