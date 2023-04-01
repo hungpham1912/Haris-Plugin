@@ -7,6 +7,7 @@ import {
   UnauthorizedException,
 } from '@nestjs/common';
 import { Response } from 'express';
+import { MESSAGES_BASE_ERROR } from 'src/shared/error/base.error';
 
 @Catch(BadRequestException)
 export class BadRequestExceptionFilter implements ExceptionFilter {
@@ -21,7 +22,7 @@ export class BadRequestExceptionFilter implements ExceptionFilter {
     response.status(status).json({
       statusCode: status,
       message: getRes.message,
-      error: 'BAD_REQUEST',
+      error: MESSAGES_BASE_ERROR[1],
     });
   }
 }
@@ -39,7 +40,7 @@ export class ForbiddenExceptionFilter implements ExceptionFilter {
       .json({
         statusCode: status,
         message: 'Account insufficient permissions to take action',
-        error: 'FORBIDDEN',
+        error: MESSAGES_BASE_ERROR[2],
       });
   }
 }
@@ -57,7 +58,7 @@ export class UnauthorizedExceptionFilter implements ExceptionFilter {
       .json({
         statusCode: status,
         message: 'An error occurred while processing the access token',
-        error: 'UNAUTHORIZED',
+        error: MESSAGES_BASE_ERROR[3],
       });
   }
 }

@@ -11,6 +11,7 @@ import { JwtMerchantAuthGuard } from 'src/core/merchants/guards/jwt.guard';
 import { BASE_ERROR } from 'src/shared/error/base.error';
 import { AuthResponse } from 'src/wanders/decorators/auth.decorator';
 import { PluginMerchantHelpService } from '../services/help.service';
+import { MerchantAcceptedGuard } from 'src/core/merchants/guards/merchant-accepted.guard';
 
 @ApiTags('Help')
 @UseGuards(JwtMerchantAuthGuard)
@@ -19,6 +20,7 @@ export class PluginMerchantHelpController {
   constructor(private readonly pluginAuthService: PluginMerchantHelpService) {}
 
   @ApiBearerAuth()
+  @UseGuards(MerchantAcceptedGuard)
   @Post('/forgotKey')
   @ApiOperation({ summary: 'Merchant forgot key' })
   @ApiResponse({ status: 401, description: 'Unauthorized.' })
@@ -33,6 +35,7 @@ export class PluginMerchantHelpController {
   }
 
   @ApiBearerAuth()
+  @UseGuards(MerchantAcceptedGuard)
   @Post('/verifyForgotKey')
   @ApiOperation({ summary: 'Verify forgot key' })
   @ApiResponse({ status: 401, description: 'Unauthorized.' })

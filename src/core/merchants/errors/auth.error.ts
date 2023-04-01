@@ -4,6 +4,7 @@ export const MERCHANT_AUTH_ERROR = {
   3: `Verify otp failed, otp invalid or expired `,
   4: `Can not found email`,
   5: `Password failed`,
+  6: `Merchant not verify email`,
 };
 export const MERCHANT_GUARD_ERROR = {
   0: 'Request invalid',

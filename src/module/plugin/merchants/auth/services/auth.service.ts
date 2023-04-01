@@ -130,7 +130,9 @@ export class PluginMerchantAuthService {
   }
 
   async login(body: LoginMerchantDto) {
-    const merchant = await this.merchantsService.findOne({ email: body.email });
+    const merchant = await this.merchantsService.findOne({
+      email: body.email,
+    });
     const { password } = merchant;
     if (!(await this.authService.checkPassword(body.password, password)))
       return {
