@@ -8,8 +8,13 @@ import { OperatorModule } from './module/operator/operator.module';
 import { PluginModule } from './module/plugin/plugin.module';
 import { ENV_CONFIG } from './shared/constants/env.constant';
 import { ENTITIES } from './database/database.config';
+import { ThrottlerModule } from '@nestjs/throttler';
 @Module({
   imports: [
+    ThrottlerModule.forRoot({
+      ttl: 1,
+      limit: 100,
+    }),
     TypeOrmModule.forRoot({
       type: 'postgres',
       entities: ENTITIES,

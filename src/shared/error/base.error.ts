@@ -6,6 +6,7 @@ export const MESSAGES_BASE_ERROR = {
   2: 'BAD_REQUEST',
   3: 'FORBIDDEN',
   4: 'UNAUTHORIZED',
+  5: 'TOO_MANY_REQUEST',
 };
 
 export const BASE_ERROR: Array<BasicResponse> = [
