@@ -1,14 +1,10 @@
 import { Logger, ValidationPipe, VersioningType } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
 import { NestExpressApplication } from '@nestjs/platform-express';
-import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { AppModule } from './app.module';
 import { Source } from './database/database.config';
-import { BankingModule } from './module/banking/banking.module';
-import { ClientModule } from './module/client/client.module';
-import { OperatorModule } from './module/operator/operator.module';
-import { PluginModule } from './module/plugin/plugin.module';
 import { ENV_CONFIG } from './shared/constants/env.constant';
+import { createSwagger } from './swaggers/create.swagger';
 
 async function bootstrap() {
   const { port, apiVersion } = ENV_CONFIG.system;
@@ -19,58 +15,8 @@ async function bootstrap() {
     defaultVersion: [apiVersion],
   });
 
-  // Setup Operator Swagger
-  const ClientSwagger = new DocumentBuilder()
-    .setTitle('Project API - Web App')
-    .setDescription('API documentation for version 1 project')
-    .setVersion('1.0')
-    .addBearerAuth()
-    .build();
-  const ClientDocument = SwaggerModule.createDocument(app, ClientSwagger, {
-    include: [ClientModule],
-  });
-
-  SwaggerModule.setup('client/docs/api', app, ClientDocument);
-
-  // Setup Operator Swagger
-  const OperatorSwagger = new DocumentBuilder()
-    .setTitle('Project API - Web App')
-    .setDescription('API documentation for version 1 project')
-    .setVersion('1.0')
-    .addBearerAuth()
-    .build();
-  const OperatorDocument = SwaggerModule.createDocument(app, OperatorSwagger, {
-    include: [OperatorModule],
-  });
-
-  SwaggerModule.setup('operator/docs/api', app, OperatorDocument);
-
-  // Setup Plugin Swagger
-  const PluginSwagger = new DocumentBuilder()
-    .setTitle('Project API - Plugin')
-    .setDescription('API documentation for version 1 project')
-    .setVersion('1.0')
-    .addBearerAuth()
-    .build();
-  const PluginDocument = SwaggerModule.createDocument(app, PluginSwagger, {
-    include: [PluginModule],
-  });
-
-  SwaggerModule.setup('plugin/docs/api', app, PluginDocument);
-
-  // Setup Banking Swagger
-  const BankingSwagger = new DocumentBuilder()
-    .setTitle('Project API - Banking')
-    .setDescription('API documentation for version 1 project')
-    .setVersion('1.0')
-    .addBearerAuth()
-    .build();
-  const BankingDocument = SwaggerModule.createDocument(app, BankingSwagger, {
-    include: [BankingModule],
-  });
-
-  SwaggerModule.setup('banking/docs/api', app, BankingDocument);
-
+  //Setup Swagger
+  createSwagger(app);
   // Setup auto-validations
   app.useGlobalPipes(new ValidationPipe({ transform: true }));
   await Source.setConnect();
