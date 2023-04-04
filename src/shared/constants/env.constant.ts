@@ -46,4 +46,10 @@ export const ENV_CONFIG = {
     apiKey: getConfig('vietQR.apiKey'),
     baseUrl: getConfig('vietQR.baseUrl'),
   },
+
+  dropbox: {
+    baseUrl: getConfig('dropbox.baseUrl'),
+    accessToken: getConfig('dropbox.accessToken'),
+    path: getConfig('dropbox.path'),
+  },
 };

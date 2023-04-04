@@ -11,4 +11,5 @@ export const MERCHANT_CONSTANT = {
     sendKey: '[HARIS] Information for merchant',
     forgotKey: '[HARIS] Otp for resend key merchant',
   },
+  fileKey: {},
 };
