@@ -5,6 +5,8 @@ import { AppModule } from './app.module';
 import { Source } from './database/database.config';
 import { ENV_CONFIG } from './shared/constants/env.constant';
 import { createSwagger } from './swaggers/create.swagger';
+import * as dotenv from 'dotenv';
+dotenv.config();
 
 async function bootstrap() {
   const { port, apiVersion } = ENV_CONFIG.system;
@@ -21,6 +23,12 @@ async function bootstrap() {
   app.useGlobalPipes(new ValidationPipe({ transform: true }));
   await Source.setConnect();
   await app.listen(process.env.PORT || port);
-  Logger.log(`Server listening on http://localhost:${port}/`);
+  console.log(
+    '🚀 ~ file: main.ts:24 ~ bootstrap ~ process.env.PORT:',
+    process.env.PORT,
+  );
+  Logger.log(
+    `Server listening on http://localhost:${process.env.PORT || port}/`,
+  );
 }
 bootstrap();
