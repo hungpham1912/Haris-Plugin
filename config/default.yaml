@@ -2,7 +2,7 @@ system:
   port: 3000
   api_version: 1
   characters: ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789
-  expiryOtp: 5
+  expiryOtp: 60
   numberCharactersOtp: 4
   mail: 
     sendDefault: 
@@ -36,4 +36,5 @@ dropbox:
   baseUrlContent:  https://content.dropboxapi.com
   baseUrlApi: https://api.dropboxapi.com
   accessToken: sl.Bb4ZdWxtswZPjPKYriTBrwsIr5ldFtZMPc7EZTUBU8iQFGFIXcrCs4eg6SrayPxp3TgEL8nCbeQt-RM2FemG-BlICBT9JPWBaojo9L610axUJJvbFof66tCj26Ga3NKOKNlygNsZ--Iz
+  #   accessToken: sl.Bb7IXdEjspduAfnSj8mbGWJPJnztIgpo0Ver7VKHkpPp15hJLHoyPk1KzkBwTUaNTkKzjyoFcphRFIMYE9mCojRHWLmTEb4Rdus_TtQYziz9-OR8aNPzleybtzRmHhuwAwqMJa9JzIkD
   path: /file-key/

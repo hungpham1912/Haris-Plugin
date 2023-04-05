@@ -29,4 +29,12 @@ export class KeyInfoService {
       throw error;
     }
   }
+
+  async delete(query: FindOptionsWhere<KeyInfo>) {
+    try {
+      return await this.keyInfoRepository.softDelete(query);
+    } catch (error) {
+      throw error;
+    }
+  }
 }

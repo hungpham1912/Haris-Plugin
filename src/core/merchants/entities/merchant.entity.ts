@@ -1,5 +1,6 @@
+import { KeyInfo } from 'src/core/key_info/entities/key_info.entity';
 import { BaseEntity } from 'src/shared/entities/base.entity';
-import { Column, Entity } from 'typeorm';
+import { Column, Entity, OneToMany } from 'typeorm';
 
 @Entity('merchants')
 export class Merchant extends BaseEntity {
@@ -17,4 +18,7 @@ export class Merchant extends BaseEntity {
 
   @Column({ nullable: false })
   password: string;
+
+  @OneToMany(() => KeyInfo, (keysInfo) => keysInfo.merchant, { eager: true })
+  keysInfo: KeyInfo[];
 }

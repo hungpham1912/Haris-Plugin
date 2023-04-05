@@ -23,7 +23,7 @@ export class BadRequestExceptionFilter implements ExceptionFilter {
     response.status(status).json({
       statusCode: status,
       message: getRes.message,
-      error: MESSAGES_BASE_ERROR[1],
+      error: MESSAGES_BASE_ERROR[2],
     });
   }
 }
@@ -41,7 +41,7 @@ export class ForbiddenExceptionFilter implements ExceptionFilter {
       .json({
         statusCode: status,
         message: 'Account insufficient permissions to take action',
-        error: MESSAGES_BASE_ERROR[2],
+        error: MESSAGES_BASE_ERROR[3],
       });
   }
 }
@@ -59,7 +59,7 @@ export class UnauthorizedExceptionFilter implements ExceptionFilter {
       .json({
         statusCode: status,
         message: 'An error occurred while processing the access token',
-        error: MESSAGES_BASE_ERROR[3],
+        error: MESSAGES_BASE_ERROR[4],
       });
   }
 }
