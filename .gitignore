@@ -36,7 +36,7 @@ lerna-debug.log*
 
 
 # Don't ignore these
-*.yaml
+# *.yaml
 !*.yml
 !.gitattributes
 !.gitignore
