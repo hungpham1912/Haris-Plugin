@@ -32,10 +32,6 @@ export class FilesService {
       });
 
       const { data } = res;
-      console.log(
-        '🚀 ~ file: files.service.ts:35 ~ FilesService ~ createFile ~ data:',
-        data,
-      );
       this.dropboxLogsService.create({
         log: data,
         status: res.status,
@@ -83,14 +79,14 @@ export class FilesService {
       return data;
     } catch (error) {
       this.dropboxLogsService.create({
-        log: error?.response?.data,
+        log: error,
         status: error?.response?.status
           ? error?.response?.status
           : HttpStatus.INTERNAL_SERVER_ERROR,
         url: getLink,
         path: keyInfo.file.url,
       });
-      throw error?.response?.data;
+      throw error;
     }
   }
 
