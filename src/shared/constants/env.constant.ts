@@ -48,7 +48,8 @@ export const ENV_CONFIG = {
   },
 
   dropbox: {
-    baseUrl: getConfig('dropbox.baseUrl'),
+    baseUrlContent: getConfig('dropbox.baseUrlContent'),
+    baseUrlApi: getConfig('dropbox.baseUrlApi'),
     accessToken: getConfig('dropbox.accessToken'),
     path: getConfig('dropbox.path'),
   },

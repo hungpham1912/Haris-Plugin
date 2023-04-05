@@ -8,16 +8,17 @@ import { ENV_CONFIG } from 'src/shared/constants/env.constant';
 import { FILE_CONSTANT } from './constants/file.constant';
 import { SendFileDto } from './dto/send-file.dto';
 import { DropboxLogsService } from '../dropbox_logs/dropbox_logs.service';
+import { KeyInfo } from '../key_info/entities/key_info.entity';
 
 const { accessToken, path } = ENV_CONFIG.dropbox;
-const { uploadUrl } = FILE_CONSTANT;
+const { uploadUrl, getLink } = FILE_CONSTANT;
 
 @Injectable()
 export class FilesService {
   constructor(
+    private readonly httpService: HttpService,
     @InjectRepository(File)
     private readonly fileRepository: Repository<File>,
-    private readonly httpService: HttpService,
     private readonly dropboxLogsService: DropboxLogsService,
   ) {}
 
@@ -31,10 +32,15 @@ export class FilesService {
       });
 
       const { data } = res;
+      console.log(
+        '🚀 ~ file: files.service.ts:35 ~ FilesService ~ createFile ~ data:',
+        data,
+      );
       this.dropboxLogsService.create({
         log: data,
         status: res.status,
         url: uploadUrl,
+        path: data?.id,
       });
 
       return await this.create({
@@ -49,38 +55,42 @@ export class FilesService {
           ? error?.response?.status
           : HttpStatus.INTERNAL_SERVER_ERROR,
         url: uploadUrl,
+        path: error?.response?.id,
       });
       throw error;
     }
   }
 
-  async getTemporaryLink(file: File) {
+  async getTemporaryLink(keyInfo: KeyInfo) {
     try {
       const res = await this.httpService.axiosRef.post(
-        uploadUrl,
-        { path: file.url },
+        getLink,
+        { path: keyInfo.file.url },
         {
           headers: this.buildHeaderGetLink(accessToken),
         },
       );
 
       const { data } = res;
+
       this.dropboxLogsService.create({
         log: data,
         status: res.status,
-        url: uploadUrl,
+        url: getLink,
+        path: keyInfo.file.url,
       });
 
-      return data?.link;
+      return data;
     } catch (error) {
       this.dropboxLogsService.create({
         log: error?.response?.data,
         status: error?.response?.status
           ? error?.response?.status
           : HttpStatus.INTERNAL_SERVER_ERROR,
-        url: uploadUrl,
+        url: getLink,
+        path: keyInfo.file.url,
       });
-      throw error;
+      throw error?.response?.data;
     }
   }
 

@@ -12,6 +12,9 @@ import { User } from 'src/core/users/entities/user.entity';
 import { UserConversation } from 'src/core/user_conversation/entities/user_conversation.entity';
 import { ENV_CONFIG } from 'src/shared/constants/env.constant';
 import { DataSource, DataSourceOptions } from 'typeorm';
+import { DropboxLog } from 'src/core/dropbox_logs/entities/dropbox_log.entity';
+import { KeyInfo } from 'src/core/key_info/entities/key_info.entity';
+import { File } from 'src/core/files/entities/file.entity';
 
 export const ENTITIES = [
   Manager,
@@ -25,6 +28,9 @@ export const ENTITIES = [
   Gateway,
   Log,
   Otp,
+  DropboxLog,
+  KeyInfo,
+  File,
 ];
 
 export const SOURCE_CONFIG: DataSourceOptions = {

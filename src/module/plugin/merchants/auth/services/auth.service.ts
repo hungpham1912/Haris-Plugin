@@ -18,6 +18,9 @@ import { generateKey, genSignature } from 'src/shared/helper/system.helper';
 import { MoreThanOrEqual } from 'typeorm';
 import { getTemplateInfoMerchant } from 'views/mail-infor';
 import { getTemplateOtp } from 'views/mail-otp';
+import { MerchantInfo } from 'src/core/merchant_info/entities/merchant_info.entity';
+import { Merchant } from 'src/core/merchants/entities/merchant.entity';
+import { PluginFilesService } from 'src/module/plugin/files/file.service';
 
 @Injectable()
 export class PluginMerchantAuthService {
@@ -27,6 +30,7 @@ export class PluginMerchantAuthService {
     private readonly otpService: OtpService,
     private readonly mailService: MailService,
     private readonly authService: AuthService,
+    private readonly pluginFilesService: PluginFilesService,
   ) {}
   async registerMerchantUser(body: RegisterMerchantUserDto) {
     return body;
@@ -105,17 +109,7 @@ export class PluginMerchantAuthService {
       const info = await this.merchantInfoService.findOne({
         merchantId: merchant.id,
       });
-
-      this.mailService.sendMailFormSystem({
-        subject: MERCHANT_CONSTANT.mail.sendKey,
-        to: merchant.email,
-        text: otp.otp,
-        html: await getTemplateInfoMerchant({
-          name: merchant.name,
-          privateKey: info.privateKey,
-          publicKey: info.publicKey,
-        }),
-      });
+      this.uploadAndSendFile(info, merchant);
 
       return {
         statusCode: HttpStatus.OK,
@@ -127,6 +121,20 @@ export class PluginMerchantAuthService {
       console.log('🚀 ~ file: auth.service.ts:88 ~  ~ error:', error);
       throw error;
     }
+  }
+
+  async uploadAndSendFile(info: MerchantInfo, merchant: Merchant) {
+    const links = await this.pluginFilesService.uploadAndGetLink(info);
+
+    this.mailService.sendMailFormSystem({
+      subject: MERCHANT_CONSTANT.mail.sendKey,
+      to: merchant.email,
+      html: await getTemplateInfoMerchant({
+        name: merchant.name,
+        privateKey: links.linkPrivate,
+        publicKey: links.linkPublic,
+      }),
+    });
   }
 
   async login(body: LoginMerchantDto) {

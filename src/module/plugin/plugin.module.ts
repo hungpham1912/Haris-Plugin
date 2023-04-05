@@ -4,9 +4,10 @@ import { PluginAuthModule } from './merchants/auth/auth.module';
 import { PluginMerchantController } from './merchants/merchant.controller';
 import { PluginMerchantModule } from './merchants/merchant.module';
 import { PluginMerchantHelpController } from './merchants/auth/controllers/help.controller';
+import { PluginFilesModule } from './files/file.module';
 
 @Module({
-  imports: [PluginMerchantModule, PluginAuthModule],
+  imports: [PluginMerchantModule, PluginAuthModule, PluginFilesModule],
   controllers: [
     PluginMerchantController,
     PluginAuthController,

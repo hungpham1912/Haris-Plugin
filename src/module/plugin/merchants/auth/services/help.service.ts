@@ -11,6 +11,7 @@ import { MoreThanOrEqual } from 'typeorm';
 import { getTemplateInfoMerchant } from 'views/mail-infor';
 import { getTemplateOtp } from 'views/mail-otp';
 import { PluginFilesService } from 'src/module/plugin/files/file.service';
+import { MerchantInfo } from 'src/core/merchant_info/entities/merchant_info.entity';
 
 @Injectable()
 export class PluginMerchantHelpService {
@@ -58,20 +59,29 @@ export class PluginMerchantHelpService {
         merchantId: merchant.id,
       });
 
-      this.mailService.sendMailFormSystem({
-        subject: MERCHANT_CONSTANT.mail.sendKey,
-        to: merchant.email,
-        text: otp.otp,
-        html: await getTemplateInfoMerchant({
-          name: merchant.name,
-          privateKey: info.privateKey,
-          publicKey: info.publicKey,
-        }),
-      });
+      this.getLinkAndSendMail(info, merchant);
 
       return { statusCode: HttpStatus.OK };
     } catch (error) {
       console.log('🚀 ~ file: help.service.ts:27 ~ :', error);
+      throw error;
+    }
+  }
+
+  async getLinkAndSendMail(info: MerchantInfo, merchant: Merchant) {
+    try {
+      const links = await this.pluginFilesService.getLinkKeyFile(info);
+      this.mailService.sendMailFormSystem({
+        subject: MERCHANT_CONSTANT.mail.sendKey,
+        to: merchant.email,
+        html: await getTemplateInfoMerchant({
+          name: merchant.name,
+          privateKey: links.linkPrivate,
+          publicKey: links.linkPublic,
+        }),
+      });
+    } catch (error) {
+      console.log('🚀 ~ file: help.service.ts:84 ~ :', error);
       throw error;
     }
   }

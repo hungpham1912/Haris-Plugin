@@ -1,7 +1,8 @@
+import { BaseEntity } from 'src/shared/entities/base.entity';
 import { Column, Entity } from 'typeorm';
 
 @Entity('dropbox_logs')
-export class DropboxLog {
+export class DropboxLog extends BaseEntity {
   @Column({ nullable: true, type: 'jsonb' })
   log: JSON;
 
@@ -10,4 +11,7 @@ export class DropboxLog {
 
   @Column({ nullable: true })
   status: number;
+
+  @Column({ nullable: true })
+  path: string;
 }

@@ -171,7 +171,7 @@ export async function getTemplateInfoMerchant(data: {
                                                             <tr>
                                                                 <td class="pad">
                                                                     <div style="color:#767688;direction:ltr;font-family:Inter, sans-serif;font-size:17px;font-weight:400;letter-spacing:0px;line-height:180%;text-align:left;mso-line-height-alt:30.6px;">
-                                                                        <p style="margin: 0;">${data.publicKey}</p>
+                                                                        <a style="margin: 0;" href="${data.publicKey}">here</a>
                                                                     </div>
                                                                 </td>
                                                             </tr>
@@ -216,7 +216,7 @@ export async function getTemplateInfoMerchant(data: {
                                                             <tr>
                                                                 <td class="pad">
                                                                     <div style="color:#767688;direction:ltr;font-family:Inter, sans-serif;font-size:17px;font-weight:400;letter-spacing:0px;line-height:180%;text-align:left;mso-line-height-alt:30.6px;">
-                                                                        <p style="margin: 0;">${data.privateKey}</p>
+                                                                        <a style="margin: 0;" href="${data.privateKey}">here</a>
                                                                     </div>
                                                                 </td>
                                                             </tr>
