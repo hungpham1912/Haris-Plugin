@@ -20,7 +20,7 @@ async function bootstrap() {
   // Setup auto-validations
   app.useGlobalPipes(new ValidationPipe({ transform: true }));
   await Source.setConnect();
-  await app.listen(port);
+  await app.listen(process.env.PORT || port);
   Logger.log(`Server listening on http://localhost:${port}/`);
 }
 bootstrap();
