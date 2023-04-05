@@ -12,6 +12,7 @@ import { getTemplateInfoMerchant } from 'views/mail-infor';
 import { getTemplateOtp } from 'views/mail-otp';
 import { PluginFilesService } from 'src/module/plugin/files/file.service';
 import { MerchantInfo } from 'src/core/merchant_info/entities/merchant_info.entity';
+import { KeyInfoService } from 'src/core/key_info/key_info.service';
 
 @Injectable()
 export class PluginMerchantHelpService {
@@ -20,9 +21,17 @@ export class PluginMerchantHelpService {
     private readonly mailService: MailService,
     private readonly merchantInfoService: MerchantInfoService,
     private readonly pluginFilesService: PluginFilesService,
+    private readonly keyInfoService: KeyInfoService,
   ) {}
   async forgotKey(merchant: Merchant) {
     try {
+      if (merchant.keysInfo.length < 2) {
+        await this.keyInfoService.delete({ merchantId: merchant.id });
+        const info = await this.merchantInfoService.findOne({
+          merchantId: merchant.id,
+        });
+        await this.pluginFilesService.createKeyFile(info);
+      }
       const otp = await this.otpService.create({
         type: OtpType.EMAIL,
         email: merchant.email,
@@ -82,7 +91,7 @@ export class PluginMerchantHelpService {
       });
     } catch (error) {
       console.log('🚀 ~ file: help.service.ts:84 ~ :', error);
-      throw error;
+      return;
     }
   }
 }

@@ -124,17 +124,22 @@ export class PluginMerchantAuthService {
   }
 
   async uploadAndSendFile(info: MerchantInfo, merchant: Merchant) {
-    const links = await this.pluginFilesService.uploadAndGetLink(info);
+    try {
+      const links = await this.pluginFilesService.uploadAndGetLink(info);
 
-    this.mailService.sendMailFormSystem({
-      subject: MERCHANT_CONSTANT.mail.sendKey,
-      to: merchant.email,
-      html: await getTemplateInfoMerchant({
-        name: merchant.name,
-        privateKey: links.linkPrivate,
-        publicKey: links.linkPublic,
-      }),
-    });
+      this.mailService.sendMailFormSystem({
+        subject: MERCHANT_CONSTANT.mail.sendKey,
+        to: merchant.email,
+        html: await getTemplateInfoMerchant({
+          name: merchant.name,
+          privateKey: links.linkPrivate,
+          publicKey: links.linkPublic,
+        }),
+      });
+    } catch (error) {
+      console.log('🚀 ~ file: auth.service.ts:140 ~ :', error);
+      return;
+    }
   }
 
   async login(body: LoginMerchantDto) {

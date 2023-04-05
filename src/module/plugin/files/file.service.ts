@@ -15,33 +15,38 @@ export class PluginFilesService {
   ) {}
 
   async uploadAndGetLink(body: MerchantInfo) {
-    const data = await this.createKeyFile(body);
-    const params: CreateKeyInfoDto[] = data.map((value) => {
-      if (value.name.slice(0, 7) === KeyType.PRIVATE)
-        return {
-          fileId: value.id,
-          merchantId: body.merchantId,
-          type: KeyType.PRIVATE,
-        };
-
-      return {
-        fileId: value.id,
-        merchantId: body.merchantId,
-        type: KeyType.PUBLIC,
-      };
-    });
-
-    await this.keyInfoService.create(params);
-    return await this.getLinkKeyFile(body);
+    try {
+      await this.createKeyFile(body);
+      return await this.getLinkKeyFile(body);
+    } catch (error) {
+      throw error;
+    }
   }
 
   async createKeyFile(body: MerchantInfo) {
     try {
       const nameFile = this.buildNameFile(body.merchantId);
-      return await Promise.all([
+      const data = await Promise.all([
         this.filesService.createFile(nameFile.private, body.privateKey),
         this.filesService.createFile(nameFile.public, body.publicKey),
       ]);
+
+      const params: CreateKeyInfoDto[] = data.map((value) => {
+        if (value.name.slice(0, 7) === KeyType.PRIVATE)
+          return {
+            fileId: value.id,
+            merchantId: body.merchantId,
+            type: KeyType.PRIVATE,
+          };
+
+        return {
+          fileId: value.id,
+          merchantId: body.merchantId,
+          type: KeyType.PUBLIC,
+        };
+      });
+
+      await this.keyInfoService.create(params);
     } catch (error) {
       throw error;
     }

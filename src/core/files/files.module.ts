@@ -10,7 +10,7 @@ import { DropboxLog } from '../dropbox_logs/entities/dropbox_log.entity';
   imports: [
     TypeOrmModule.forFeature([File, DropboxLog]),
     HttpModule.register({
-      timeout: 5000,
+      timeout: 50000,
       maxRedirects: 5,
     }),
   ],
