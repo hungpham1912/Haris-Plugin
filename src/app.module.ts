@@ -10,6 +10,7 @@ import { ENV_CONFIG } from './shared/constants/env.constant';
 import { ENTITIES } from './database/database.config';
 import { ThrottlerModule } from '@nestjs/throttler';
 import { FilesModule } from './core/files/files.module';
+import { DropboxLogsModule } from './core/dropbox_logs/dropbox_logs.module';
 @Module({
   imports: [
     ThrottlerModule.forRoot({
@@ -56,6 +57,7 @@ import { FilesModule } from './core/files/files.module';
         module: BankingModule,
       },
     ]),
+    DropboxLogsModule,
   ],
   providers: [...customProvider],
 })

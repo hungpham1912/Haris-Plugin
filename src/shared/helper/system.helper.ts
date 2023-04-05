@@ -1,6 +1,5 @@
 import { ENV_CONFIG } from '../constants/env.constant';
 import crypto = require('crypto');
-import { SendFileDto } from 'src/core/files/dto/send-file.dto';
 import { SignDto } from 'src/core/merchants/dto/auth-merchant.dto';
 
 export function makeId(length: number) {

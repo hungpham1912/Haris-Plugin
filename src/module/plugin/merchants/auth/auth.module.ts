@@ -13,6 +13,7 @@ import { OtpModule } from 'src/core/otp/otp.module';
 import { UsersModule } from 'src/core/users/users.module';
 import { PluginMerchantAuthService } from './services/auth.service';
 import { PluginMerchantHelpService } from './services/help.service';
+import { PluginFilesModule } from '../../files/file.module';
 
 @Module({
   imports: [
@@ -20,6 +21,7 @@ import { PluginMerchantHelpService } from './services/help.service';
     TypeOrmModule.forFeature([Merchant, MerchantInfo, Otp]),
     MailModule,
     OtpModule,
+    PluginFilesModule,
   ],
   providers: [
     MerchantsService,

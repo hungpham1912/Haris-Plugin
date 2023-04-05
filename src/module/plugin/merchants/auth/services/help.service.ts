@@ -10,6 +10,7 @@ import { OtpService } from 'src/core/otp/otp.service';
 import { MoreThanOrEqual } from 'typeorm';
 import { getTemplateInfoMerchant } from 'views/mail-infor';
 import { getTemplateOtp } from 'views/mail-otp';
+import { PluginFilesService } from 'src/module/plugin/files/file.service';
 
 @Injectable()
 export class PluginMerchantHelpService {
@@ -17,6 +18,7 @@ export class PluginMerchantHelpService {
     private readonly otpService: OtpService,
     private readonly mailService: MailService,
     private readonly merchantInfoService: MerchantInfoService,
+    private readonly pluginFilesService: PluginFilesService,
   ) {}
   async forgotKey(merchant: Merchant) {
     try {
