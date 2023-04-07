@@ -4,7 +4,7 @@ import { Column, Entity } from 'typeorm';
 @Entity('logs')
 export class Log extends BaseEntity {
   @Column({ nullable: true, type: 'jsonb' })
-  log: JSON;
+  log: any;
 
   @Column({ nullable: true })
   path: string;
