@@ -53,4 +53,8 @@ export const ENV_CONFIG = {
     accessToken: getConfig('dropbox.accessToken'),
     path: getConfig('dropbox.path'),
   },
+  facebook: {
+    accessToken: getConfig('facebook.accessToken'),
+    baseUrl: getConfig('facebook.baseUrl'),
+  },
 };

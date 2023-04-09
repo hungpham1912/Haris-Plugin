@@ -6,11 +6,15 @@ import { File } from './entities/file.entity';
 import { Repository } from 'typeorm';
 import { ENV_CONFIG } from 'src/shared/constants/env.constant';
 import { FILE_CONSTANT } from './constants/file.constant';
-import { SendFileDto } from './dto/send-file.dto';
 import { DropboxLogsService } from '../dropbox_logs/dropbox_logs.service';
 import { KeyInfo } from '../key_info/entities/key_info.entity';
+import {
+  buildHeaderGetLink,
+  buildHeaderUpload,
+  buildParamSendFile,
+} from './helper/file.helper';
 
-const { accessToken, path } = ENV_CONFIG.dropbox;
+const { accessToken } = ENV_CONFIG.dropbox;
 const { uploadUrl, getLink } = FILE_CONSTANT;
 
 @Injectable()
@@ -25,10 +29,7 @@ export class FilesService {
   async createFile(fileName: string, body: string) {
     try {
       const res = await this.httpService.axiosRef.post(uploadUrl, body, {
-        headers: this.buildHeaderUpload(
-          this.buildParamSendFile(fileName),
-          accessToken,
-        ),
+        headers: buildHeaderUpload(buildParamSendFile(fileName), accessToken),
       });
 
       const { data } = res;
@@ -63,7 +64,7 @@ export class FilesService {
         getLink,
         { path: keyInfo.file.url },
         {
-          headers: this.buildHeaderGetLink(accessToken),
+          headers: buildHeaderGetLink(accessToken),
         },
       );
 
@@ -96,35 +97,5 @@ export class FilesService {
     } catch (error) {
       throw error;
     }
-  }
-
-  buildParamSendFile(name: string): SendFileDto {
-    return {
-      autorename: false,
-      mode: 'add',
-      mute: false,
-      path: `${path}${name}`,
-      strict_conflict: false,
-    };
-  }
-
-  buildHeaderUpload(param: SendFileDto, token: string) {
-    return {
-      'Accept-Encoding': 'gzip, deflate, br',
-      Connection: 'keep-alive',
-      Authorization: `Bearer ${token}`,
-      'Dropbox-API-Arg': JSON.stringify(param),
-      'Content-Type': 'application/octet-stream',
-    };
-  }
-
-  buildHeaderGetLink(token: string) {
-    return {
-      'Accept-Encoding': 'gzip, deflate, br',
-      Connection: 'keep-alive',
-      Authorization: `Bearer ${token}`,
-      Accept: '*/*',
-      'Content-Type': 'application/json',
-    };
   }
 }

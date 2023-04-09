@@ -40,6 +40,14 @@ export class TransformInterceptor<T>
   matching(data: any, context: ExecutionContext) {
     let status = 200;
     const request = context.switchToHttp().getRequest();
+    console.log(
+      '🚀 ~ file: transform.interceptor.ts:43 ~ matching ~ request:',
+      request.client,
+    );
+    console.log(
+      '🚀 ~ file: transform.interceptor.ts:43 ~ matching ~ request:',
+      Object.keys(request),
+    );
 
     const { url, method } = request;
     Source.connect()

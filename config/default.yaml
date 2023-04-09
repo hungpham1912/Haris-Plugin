@@ -38,3 +38,6 @@ dropbox:
   # accessToken: sl.Bb4ZdWxtswZPjPKYriTBrwsIr5ldFtZMPc7EZTUBU8iQFGFIXcrCs4eg6SrayPxp3TgEL8nCbeQt-RM2FemG-BlICBT9JPWBaojo9L610axUJJvbFof66tCj26Ga3NKOKNlygNsZ--Iz
   accessToken: sl.Bb7IXdEjspduAfnSj8mbGWJPJnztIgpo0Ver7VKHkpPp15hJLHoyPk1KzkBwTUaNTkKzjyoFcphRFIMYE9mCojRHWLmTEb4Rdus_TtQYziz9-OR8aNPzleybtzRmHhuwAwqMJa9JzIkD
   path: /file-key/
+facebook:
+  accessToken: EAAGNO4a7r2wBAJBQDaUfzFJGVgS7b6Jat71SEfJcrZCvChKgPSSxihVjjqPvHj1Qqm8TF2FYkOgEeYux5tIdYrbQsNsFuACvezLqj3CagLKvOhalmjSUVLeTJwJkg9saEkRG9MsftaZCzlMFhFmM8ZC1KZC7Wbcbh8fxiUquAu1K8ZB1TlEgB
+  baseUrl: https://graph.facebook.com/v16.0/
