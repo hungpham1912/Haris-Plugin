@@ -13,7 +13,7 @@ export class SocialFacebookController {
   @Public()
   async demo() {
     try {
-      return await this.socialFacebookService;
+      return await this.socialFacebookService.demo();
     } catch (error) {
       return BASE_ERROR[0];
     }

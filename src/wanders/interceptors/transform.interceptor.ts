@@ -8,8 +8,6 @@ import {
 } from '@nestjs/common';
 import { Observable, throwError, TimeoutError } from 'rxjs';
 import { catchError, map, timeout } from 'rxjs/operators';
-import { Log } from 'src/core/logs/entities/log.entity';
-import { Source } from 'src/database/database.config';
 
 export interface Response<T> {
   data: T;
@@ -40,19 +38,8 @@ export class TransformInterceptor<T>
   matching(data: any, context: ExecutionContext) {
     let status = 200;
     const request = context.switchToHttp().getRequest();
-    console.log(
-      '🚀 ~ file: transform.interceptor.ts:43 ~ matching ~ request:',
-      request.client,
-    );
-    console.log(
-      '🚀 ~ file: transform.interceptor.ts:43 ~ matching ~ request:',
-      Object.keys(request),
-    );
 
     const { url, method } = request;
-    Source.connect()
-      .getRepository(Log)
-      .save({ log: { ip: request?.socket?.remoteAddress }, path: url });
     switch (true) {
       case !data:
         break;

@@ -9,6 +9,7 @@ import { PluginModule } from './module/plugin/plugin.module';
 import { ENV_CONFIG } from './shared/constants/env.constant';
 import { ENTITIES } from './database/database.config';
 import { ThrottlerModule } from '@nestjs/throttler';
+import { SocialNetworkModule } from './module/social-network/social-network.module';
 @Module({
   imports: [
     ThrottlerModule.forRoot({
@@ -53,6 +54,13 @@ import { ThrottlerModule } from '@nestjs/throttler';
       {
         path: 'api/banking',
         module: BankingModule,
+      },
+    ]),
+    SocialNetworkModule,
+    RouterModule.register([
+      {
+        path: 'api/social',
+        module: SocialNetworkModule,
       },
     ]),
   ],
