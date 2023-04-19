@@ -2,7 +2,7 @@ import { ENV_CONFIG } from '../constants/env.constant';
 import crypto = require('crypto');
 import { SignDto } from 'src/core/merchants/dto/auth-merchant.dto';
 
-export function makeId(length: number) {
+export const makeId = (length: number) => {
   let result = '';
   const characters = ENV_CONFIG.system.characters;
   const charactersLength = characters.length;
@@ -12,9 +12,9 @@ export function makeId(length: number) {
     counter += 1;
   }
   return result;
-}
+};
 
-export function generateKey() {
+export const generateKey = () => {
   return crypto.generateKeyPairSync('rsa', {
     modulusLength: 2048,
     publicKeyEncoding: {
@@ -26,9 +26,9 @@ export function generateKey() {
       format: 'pem',
     },
   });
-}
+};
 
-export function genSignature(data: SignDto, key: string) {
+export const genSignature = (data: SignDto, key: string) => {
   try {
     const { merchantCode, timestamp, body } = data;
     const str = `${merchantCode}\n${timestamp}\n${JSON.stringify(body)}`;
@@ -41,9 +41,9 @@ export function genSignature(data: SignDto, key: string) {
     console.log('🚀 ~ file: auth.service.ts:50 ~ :', error);
     throw error;
   }
-}
+};
 
-export function createUUID() {
+export const createUUID = () => {
   let dt = new Date().getTime();
   const uuid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(
     /[xy]/g,
@@ -54,4 +54,4 @@ export function createUUID() {
     },
   );
   return uuid;
-}
+};
