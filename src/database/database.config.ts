@@ -33,17 +33,19 @@ export const ENTITIES = [
   File,
 ];
 
-export const SOURCE_CONFIG: DataSourceOptions = {
-  type: 'postgres',
-  entities: ENTITIES,
-  extra: {
-    ssl: {
-      rejectUnauthorized: false,
+export const SOURCE_CONFIG: DataSourceOptions[] = [
+  {
+    type: 'postgres',
+    entities: ENTITIES,
+    extra: {
+      ssl: {
+        rejectUnauthorized: false,
+      },
     },
+    synchronize: false,
+    ...ENV_CONFIG.database.harisPrd,
   },
-  synchronize: false,
-  ...ENV_CONFIG.database.harisPrd,
-};
+];
 
 @Injectable({
   scope: Scope.DEFAULT,
@@ -56,7 +58,7 @@ export class Source {
   }
 
   public static async setConnect() {
-    const source = new DataSource(SOURCE_CONFIG);
+    const source = new DataSource(SOURCE_CONFIG[0]);
     await source
       .initialize()
       .then(() => {

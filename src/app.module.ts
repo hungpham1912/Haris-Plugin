@@ -6,27 +6,16 @@ import { BankingModule } from './module/banking/banking.module';
 import { ClientModule } from './module/client/client.module';
 import { OperatorModule } from './module/operator/operator.module';
 import { PluginModule } from './module/plugin/plugin.module';
-import { ENV_CONFIG } from './shared/constants/env.constant';
-import { ENTITIES } from './database/database.config';
 import { ThrottlerModule } from '@nestjs/throttler';
 import { SocialNetworkModule } from './module/social-network/social-network.module';
+import { SOURCE_CONFIG } from './database/database.config';
 @Module({
   imports: [
     ThrottlerModule.forRoot({
       ttl: 1,
       limit: 100,
     }),
-    TypeOrmModule.forRoot({
-      type: 'postgres',
-      entities: ENTITIES,
-      extra: {
-        ssl: {
-          rejectUnauthorized: false,
-        },
-      },
-      ...ENV_CONFIG.database.harisPrd,
-      synchronize: true,
-    }),
+    TypeOrmModule.forRoot(SOURCE_CONFIG[0]),
 
     OperatorModule,
     RouterModule.register([
