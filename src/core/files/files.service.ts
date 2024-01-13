@@ -103,7 +103,6 @@ export class FilesService {
   }
 
   async pushFile(file: CreateStorageDto) {
-    console.log('🚀 ~ FilesService ~ pushFile ~ file:', file);
     try {
       const url = `${ENV_CONFIG.storage.baseUrl}upload.php`;
       const form = new FormData();
