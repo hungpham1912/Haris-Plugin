@@ -41,3 +41,5 @@ dropbox:
 facebook:
   accessToken: EAAGNO4a7r2wBABMFrWEANcMEhCnBaEq95MHKyqwMigFUMdja2zJSFY7jBtUfcLH2GZBVZA7qja4RGWjnr3zC1MURhTnBzQjWXXtwrGtYueZBuI171blzprzIsRxF8dVNklapZC1jGI9gVFcraV4ysRyvCYg0C4G4CeLZCXVcDDfPJAYycsZCoz
   baseUrl: https://graph.facebook.com/v16.0/
+storage: 
+  baseUrl: https://haris-storage.000webhostapp.com/

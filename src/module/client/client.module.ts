@@ -7,6 +7,8 @@ import { CliConversationController } from './conversations/conversation.controll
 import { CliConversationModule } from './conversations/conversation.module';
 import { CliUserController } from './users/user.controller';
 import { CliUserModule } from './users/user.module';
+import { CliStorageController } from './storage/storage.controller';
+import { CliStorageModule } from './storage/storage.module';
 
 @Module({
   imports: [
@@ -14,12 +16,14 @@ import { CliUserModule } from './users/user.module';
     CliUserModule,
     CliChatsModule,
     CliConversationModule,
+    CliStorageModule,
   ],
   controllers: [
     CliAuthController,
     CliUserController,
     CliChatsController,
     CliConversationController,
+    CliStorageController,
   ],
   exports: [],
 })

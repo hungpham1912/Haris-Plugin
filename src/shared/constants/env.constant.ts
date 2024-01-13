@@ -57,4 +57,9 @@ export const ENV_CONFIG = {
     accessToken: getConfig('facebook.accessToken'),
     baseUrl: getConfig('facebook.baseUrl'),
   },
+  storage: {
+    baseUrl:
+      getConfig('storage.baseUrl') ??
+      'https://haris-storage.000webhostapp.com/haris/',
+  },
 };

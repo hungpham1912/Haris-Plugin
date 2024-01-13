@@ -23,10 +23,6 @@ async function bootstrap() {
   app.useGlobalPipes(new ValidationPipe({ transform: true }));
   await Source.setConnect();
   await app.listen(process.env.PORT || port);
-  console.log(
-    '🚀 ~ file: main.ts:24 ~ bootstrap ~ process.env.PORT:',
-    process.env.PORT,
-  );
   Logger.log(
     `Server listening on http://localhost:${process.env.PORT || port}/`,
   );
