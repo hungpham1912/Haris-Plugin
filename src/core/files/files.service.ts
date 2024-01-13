@@ -13,6 +13,9 @@ import {
   buildHeaderUpload,
   buildParamSendFile,
 } from './helper/file.helper';
+import { CreateStorageDto } from 'src/module/client/storage/dto/create-storage.dto';
+import { v4 as uuidv4 } from 'uuid';
+import * as FormData from 'form-data';
 
 const { accessToken } = ENV_CONFIG.dropbox;
 const { uploadUrl, getLink } = FILE_CONSTANT;
@@ -95,6 +98,28 @@ export class FilesService {
     try {
       return await this.fileRepository.save(create);
     } catch (error) {
+      throw error;
+    }
+  }
+
+  async pushFile(file: CreateStorageDto) {
+    try {
+      const url = `${ENV_CONFIG.storage.baseUrl}upload.php`;
+      const form = new FormData();
+      form.append('submit', 'Upload Image');
+      form.append('fileToUpload', file.buffer, `${uuidv4()}.jpg`);
+      const { data } = await this.httpService.axiosRef.post(url, form, {
+        maxBodyLength: Infinity,
+      });
+      if (!data?.success) {
+        return { statusCode: HttpStatus.INTERNAL_SERVER_ERROR };
+      }
+      return data;
+    } catch (error) {
+      console.log(
+        '🚀 ~ FilesService ~ pushFile ~ error:',
+        error?.response?.data,
+      );
       throw error;
     }
   }
