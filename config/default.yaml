@@ -19,9 +19,9 @@ jwt:
   secret: zzzzz
 source: 
   user:
-    defaultAvatar: https://www.google.com/url?sa=i&url=https%3A%2F%2Fthoitrangwiki.com%2Fbo-suu-tap-99-anh-dai-dien-facebook-trang-chat-luong-full-hd-vi-cb.html&psig=AOvVaw1Dvh3Xe0aLMtDIAkP11D6Z&ust=1678603728237000&source=images&cd=vfe&ved=0CA8QjRxqFwoTCPj77Kik0_0CFQAAAAAdAAAAABAI
+    defaultAvatar: https://haris-storage.000webhostapp.com/haris/cf7bd15f-af62-430f-87bf-1aaf1881949d.jpg
   conversation: 
-    defaultAvatar: https://static.vecteezy.com/system/resources/previews/009/645/737/non_2x/team-icon-logo-illustration-user-group-network-symbol-template-for-graphic-and-web-design-collection-free-vector.jpg
+    defaultAvatar: https://haris-storage.000webhostapp.com/haris/cf7bd15f-af62-430f-87bf-1aaf1881949d.jpg
   merchant: 
     lengthMerchantCode: 32
 vietQR: 
