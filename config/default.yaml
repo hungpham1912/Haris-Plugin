@@ -12,7 +12,7 @@ database:
   harisPrd:
     host: ep-winter-queen-157000.us-east-2.aws.neon.tech
     username: hungpham1912
-    password: 2IzkVGvACbr5
+    password: vgeiSZ8kdxI3
     database: haris-messenger-prod
     port: 5432
 jwt:

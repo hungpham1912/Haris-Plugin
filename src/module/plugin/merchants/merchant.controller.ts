@@ -8,7 +8,7 @@ import {
 } from '@nestjs/swagger';
 import { Paginate, PaginateQuery } from 'nestjs-paginate';
 import { MerchantFilter } from 'src/core/merchants/models/merchant.model';
-import { JwtAuthManagerGuard } from 'src/module/operator/auth/guards/jwt-auth.guard';
+import { JwtAuthManagerGuard } from 'src/module/messenger/operator/auth/guards/jwt-auth.guard';
 import { BASE_ERROR } from 'src/shared/error/base.error';
 import { MerchantFilterDecor } from 'src/wanders/decorators/merchant.decorator';
 import { Public } from 'src/wanders/decorators/public.decorator';

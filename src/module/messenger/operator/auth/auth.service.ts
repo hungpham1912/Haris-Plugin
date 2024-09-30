@@ -3,7 +3,7 @@ import { AuthInterface } from 'src/core/auth/interfaces/auth.interface';
 import { AuthService } from 'src/core/auth/auth.service';
 import { Payload, ResponseAuthManager } from 'src/core/auth/models/auth.model';
 import { ManagersService } from 'src/core/managers/managers.service';
-import { RegisterManagerDto } from '../../../core/auth/dto/auth.dto';
+import { RegisterManagerDto } from '../../../../core/auth/dto/auth.dto';
 import { AUTH_ERROR } from 'src/core/auth/error/message.error';
 import { BasicResponse } from 'src/shared/basic.response';
 

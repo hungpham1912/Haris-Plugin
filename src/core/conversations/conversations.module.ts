@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { CliConversationService } from 'src/module/client/conversations/conversation.service';
+import { CliConversationService } from 'src/module/messenger/client/conversations/conversation.service';
 import { Talked } from '../talkeds/entities/talked.entity';
 import { TalkedService } from '../talkeds/talkeds.service';
 import { User } from '../users/entities/user.entity';

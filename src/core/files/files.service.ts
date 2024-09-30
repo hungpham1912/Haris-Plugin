@@ -13,7 +13,7 @@ import {
   buildHeaderUpload,
   buildParamSendFile,
 } from './helper/file.helper';
-import { CreateStorageDto } from 'src/module/client/storage/dto/create-storage.dto';
+import { CreateStorageDto } from 'src/module/messenger/client/storage/dto/create-storage.dto';
 import { v4 as uuidv4 } from 'uuid';
 import * as FormData from 'form-data';
 

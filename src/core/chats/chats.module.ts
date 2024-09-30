@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { CliChatsService } from 'src/module/client/chats/chat.service';
+import { CliChatsService } from 'src/module/messenger/client/chats/chat.service';
 import { UserConversation } from '../user_conversation/entities/user_conversation.entity';
 import { UserConversationService } from '../user_conversation/user_conversation.service';
 import { ChatsService } from './chats.service';

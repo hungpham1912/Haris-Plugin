@@ -5,7 +5,7 @@ import { Payload, ResponseAuthUser } from 'src/core/auth/models/auth.model';
 import { RegisterUserDto } from 'src/core/auth/dto/auth.dto';
 import { AuthInterface } from 'src/core/auth/interfaces/auth.interface';
 import { BasicResponse } from 'src/shared/basic.response';
-import { AUTH_ERROR } from '../../../core/auth/error/message.error';
+import { AUTH_ERROR } from '../../../../core/auth/error/message.error';
 
 @Injectable()
 export class CliAuthService implements AuthInterface {

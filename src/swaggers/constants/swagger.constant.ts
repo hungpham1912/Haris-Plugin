@@ -1,6 +1,6 @@
 import { BankingModule } from 'src/module/banking/banking.module';
-import { ClientModule } from 'src/module/client/client.module';
-import { OperatorModule } from 'src/module/operator/operator.module';
+import { ClientModule } from 'src/module/messenger/client/client.module';
+import { OperatorModule } from 'src/module/messenger/operator/operator.module';
 import { PluginModule } from 'src/module/plugin/plugin.module';
 import { CreateSwaggerParam } from '../create.swagger';
 import { SocialNetworkModule } from 'src/module/social-network/social-network.module';
